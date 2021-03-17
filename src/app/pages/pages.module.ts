@@ -8,8 +8,7 @@ import { LoginComponent } from './login/login.component';
   declarations: [LoginComponent],
   imports: [
     CommonModule,
-    PagesRoutingModule,
-    NbCardModule
+    PagesRoutingModule
   ]
 })
 export class PagesModule { }
