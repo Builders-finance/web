@@ -10,6 +10,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -22,8 +23,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     RouterModule,
     AutocompleteLibModule,
     BsDatepickerModule,
-    AccordionModule
-
+    BsDropdownModule,
+    AccordionModule,
   ],
   exports:[
     CategoriesComponent,

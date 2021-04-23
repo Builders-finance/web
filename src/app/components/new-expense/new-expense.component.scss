@@ -43,6 +43,12 @@
     }
 }
 
+::ng-deep .btn-primary.dropdown-toggle {
+  background-color: #523479 !important;
+  border-color: #523479 !important;
+  color: white !important;
+}
+
 ::ng-deep  accordion{
     width: 100% !important;
     &-group{
@@ -92,6 +98,10 @@ form{
             }
         }
 
+        button, label {
+          display:block;
+        }
+
         input, .ng-autocomplete{
             border-top: 0;
             border-left: 0;
@@ -118,4 +128,11 @@ form{
 
 
     }
+
+  .centered {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
 }

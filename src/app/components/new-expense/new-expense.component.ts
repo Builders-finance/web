@@ -17,6 +17,23 @@ export class NewExpenseComponent implements OnInit {
   maxDate = new Date();
   categorySelected = {}
 
+  formasPagamento = [
+    'Débito',
+    'Crédito',
+    'PIX',
+    'Dinheiro',
+    'Boleto'
+  ];
+
+  statusPagamentos = [
+    'Pago',
+    'Nao pago',
+    'Parcial'
+  ]
+
+  statusPagamento = this.statusPagamentos[0];
+  formaPagamento = this.formasPagamento[0];
+
   @Input()
   data = {}
 
@@ -52,6 +69,14 @@ export class NewExpenseComponent implements OnInit {
     setDate(this.maxDate.getDate() + 7);
 
     this.formGroupExpense.valueChanges.subscribe(value=> {console.log(value), this.dataChange.emit(value), this.isValid.emit(this.formGroupExpense.valid)})
+  }
+
+  onChange(value) {
+    this.formaPagamento = value;
+  }
+
+  onChangeStatus(value) {
+    this.statusPagamento = value;
   }
 
   get formGroupControls(){
