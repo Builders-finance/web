@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoriesComponent } from './categories/categories.component';
@@ -11,6 +12,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     BsDatepickerModule,
     BsDropdownModule,
     AccordionModule,
+    NgxMaskModule
   ],
   exports:[
     CategoriesComponent,

@@ -7,7 +7,7 @@
   <ng-template #new>
       <div class="d-flex justify-content-between app-header">
           <fa name="angle-left" class="icon" (click)="modalRef.hide()"></fa>
-           <h5 class="app-link flex-fill">Expense</h5>
+           <h5 class="app-link flex-fill">Receita / Despesa</h5>
         </div>
         <div class="modal-body">
           <div class="row align-items-center" *ngIf="newExpenseShowLoading">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+          <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
         </div>
 
   </ng-template>
