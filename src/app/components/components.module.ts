@@ -12,6 +12,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({

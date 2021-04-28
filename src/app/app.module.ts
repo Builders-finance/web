@@ -16,6 +16,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { UiModule } from './shared/ui/ui.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ToastrModule } from 'ngx-toastr';
 
 
 // const maskConfig: Partial<IConfig> = {
@@ -41,7 +42,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     AccordionModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
   ],
   providers: [DatePipe, CurrencyPipe],
   bootstrap: [AppComponent]

@@ -4,7 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
 import { NewExpenseComponent } from './components/new-expense/new-expense.component';
 import { PaymentStatus, PaymentType, Transaction } from './shared/models/transaction.model';
-
+import { ToastrService } from 'ngx-toastr';
+import {  finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,7 +35,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DataService) private dataService: DataService,
   private modalService: BsModalService,
-  private datePipe: DatePipe) {
+  private datePipe: DatePipe,
+  private toastr: ToastrService
+  ) {
   }
 
   ngOnInit(): void {
@@ -76,9 +79,21 @@ export class AppComponent implements OnInit, AfterViewInit {
         data: dt
       }
 
-      // this.dataService.addTransaction(this.newExpense).subscribe(res => {
-      //   console.log(res);
-      // })
+
+      this.dataService.addTransaction(this.transaction)
+        .pipe(
+          finalize(() => {
+            this.newExpenseShowLoading = false;
+            this.modalRef.hide();
+          }),
+        )
+        .subscribe(res => {
+          if(res) {
+            this.toastr.success('Sucesso!', 'Transação salva com sucesso!');
+          }
+        }, err => {
+          this.toastr.error('Erro!', 'Houve um erro inesperado, tente novamente mais tarde...');
+        });
 
       // this.dataService.add(
       //   this.newExpense['category'].name,
@@ -86,13 +101,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       //   this.datePipe.transform(this.newExpense['date'],'yyyy-MM-dd'),
       //   this.newExpense['location'],
       //   this.newExpense['notes'])
-
-        let modal =this.modalRef
-        let loading =this.newExpenseShowLoading
-        setTimeout(function(){
-          loading = false
-          modal.hide()
-        },600)
     }
 
   }

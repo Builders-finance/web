@@ -35,8 +35,6 @@ export class NewExpenseComponent implements OnInit {
     {name: 'Parcial', value: PaymentStatus.partial},
   ]
 
-  statusPagamento = this.statusPagamentos[0];
-
 
   @Input()
   data = {}
@@ -91,6 +89,10 @@ export class NewExpenseComponent implements OnInit {
 
   get formaPagamento() {
     return this.formGroupExpense.get('formaPagamento').value;
+  }
+
+  get statusPagamento() {
+    return this.formGroupExpense.get('statusPagamento').value;
   }
 
   get formGroupControls(){
