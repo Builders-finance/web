@@ -3,7 +3,11 @@ import { Component, OnInit, Inject, Input, Output, EventEmitter, ViewChild, Elem
 import { DataService } from 'src/app/shared/services/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Pagination } from 'src/app/shared/models/pagination.model';
-
+import { PaymentStatus, PaymentType } from 'src/app/shared/models/transaction.model';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { BsLocaleService } from 'ngx-bootstrap';
+defineLocale('pt-br', ptBrLocale);
 
 @Component({
   selector: 'app-new-expense',
@@ -18,21 +22,21 @@ export class NewExpenseComponent implements OnInit {
   categorySelected = {}
 
   formasPagamento = [
-    'Débito',
-    'Crédito',
-    'PIX',
-    'Dinheiro',
-    'Boleto'
+    {name: 'Débito', value: PaymentType.debit},
+    {name: 'Crédito', value: PaymentType.credit},
+    {name: 'PIX', value: PaymentType.pix},
+    {name: 'Dinheiro', value: PaymentType.cash},
+    {name: 'Boleto', value: PaymentType.bill},
   ];
 
   statusPagamentos = [
-    'Pago',
-    'Não pago',
-    'Parcial'
+    {name: 'Pago', value: PaymentStatus.paid},
+    {name: 'Não pago', value: PaymentStatus.unpaid},
+    {name: 'Parcial', value: PaymentStatus.partial},
   ]
 
   statusPagamento = this.statusPagamentos[0];
-  formaPagamento = this.formasPagamento[0];
+
 
   @Input()
   data = {}
@@ -50,10 +54,13 @@ export class NewExpenseComponent implements OnInit {
     value: new FormControl('', [Validators.required, Validators.min(0)]),
     category: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
+    formaPagamento: new FormControl(this.formasPagamento[0], Validators.required),
+    statusPagamento: new FormControl(this.statusPagamentos[0], Validators.required),
     notes: new FormControl(''),
   });
 
-  constructor(@Inject(DataService) private dataService: DataService) {
+  constructor(@Inject(DataService) private dataService: DataService, private localeService: BsLocaleService) {
+    localeService.use('pt-br');
   }
 
   ngOnInit() {
@@ -70,12 +77,20 @@ export class NewExpenseComponent implements OnInit {
     this.formGroupExpense.valueChanges.subscribe(value=> {console.log(value), this.dataChange.emit(value), this.isValid.emit(this.formGroupExpense.valid)})
   }
 
-  onChange(value) {
-    this.formaPagamento = value;
+  onChange(fp) {
+    this.formGroupExpense.patchValue({
+      formaPagamento: fp,
+    });
   }
 
-  onChangeStatus(value) {
-    this.statusPagamento = value;
+  onChangeStatus(sp) {
+    this.formGroupExpense.patchValue({
+      statusPagamento: sp,
+    });
+  }
+
+  get formaPagamento() {
+    return this.formGroupExpense.get('formaPagamento').value;
   }
 
   get formGroupControls(){

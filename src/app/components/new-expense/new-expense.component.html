@@ -23,7 +23,7 @@
             formControlName="category"
               [data]="categories"
               [searchKeyword]="'name'"
-              [placeHolder]="'What it was for?'"
+              [placeHolder]="'Que tipo de transação foi?'"
               [itemTemplate]="itemTemplate"
               [notFoundTemplate]="notFoundTemplate" >
             </ng-autocomplete>
@@ -58,24 +58,24 @@
       <div class="btn-group centered" dropdown>
           <label for="button-basic1"><strong>Forma de Pagamento</strong></label>
           <button id="button-basic1" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                aria-controls="dropdown-basic" name="formaPagamento" ngDefaultControl [(ngModel)]="formaPagamento" [ngModelOptions]="{standalone: true}">
-          {{ formaPagamento }} <span class="caret"></span>
+                aria-controls="dropdown-basic" name="formaPagamento" ngDefaultControl formControlName="formaPagamento" >
+          {{ formaPagamento.name }} <span class="caret"></span>
         </button>
         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
             role="menu" aria-labelledby="button-basic">
-          <li role="menuitem"><a class="dropdown-item" href="#" *ngFor="let fp of formasPagamento" (click)="onChange(fp)">{{ fp }}</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#" *ngFor="let fp of formasPagamento" (click)="onChange(fp)">{{ fp.name }}</a></li>
         </ul>
       </div>
 
       <div class="btn-group centered" dropdown>
         <label for="button-basic1"><strong>Status</strong></label>
         <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                aria-controls="dropdown-basic" name="formaPagamento" ngDefaultControl [(ngModel)]="statusPagamento" [ngModelOptions]="{standalone: true}">
-          {{ statusPagamento }} <span class="caret"></span>
+                aria-controls="dropdown-basic" name="formaPagamento" ngDefaultControl formControlName="statusPagamento">
+          {{ statusPagamento.name }} <span class="caret"></span>
         </button>
         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
             role="menu" aria-labelledby="button-basic">
-          <li role="menuitem"><a class="dropdown-item" href="#" *ngFor="let sp of statusPagamentos" (click)="onChangeStatus(sp)">{{ sp }}</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#" *ngFor="let sp of statusPagamentos" (click)="onChangeStatus(sp)">{{ sp.name }}</a></li>
         </ul>
       </div>
     </div>

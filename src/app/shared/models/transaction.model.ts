@@ -8,7 +8,8 @@ export enum PaymentType {
   credit = 'credit',
   debit = 'debit',
   cash = 'cash',
-  pix = 'pix'
+  pix = 'pix',
+  bill = 'bill'
 }
 
 export interface Transaction {
