@@ -27,7 +27,7 @@ export class NewExpenseComponent implements OnInit {
 
   statusPagamentos = [
     'Pago',
-    'Nao pago',
+    'Não pago',
     'Parcial'
   ]
 
@@ -49,7 +49,6 @@ export class NewExpenseComponent implements OnInit {
   formGroupExpense = new FormGroup({
     value: new FormControl('', [Validators.required, Validators.min(0)]),
     category: new FormControl('', Validators.required),
-    location: new FormControl('', [Validators.required, Validators.minLength(1)]),
     date: new FormControl('', Validators.required),
     notes: new FormControl(''),
   });

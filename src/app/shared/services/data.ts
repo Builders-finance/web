@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Transaction } from '../models/transaction.model';
 
 
 @Injectable({
@@ -26,6 +27,11 @@ export class DataService {
   public getCategories(): Observable<any> {
     const revexp = this.http.get(`${environment.urlBase}revexp`);
     return revexp;
+  }
+
+  public addTransaction(transaction: Transaction) {
+    const trans = this.http.post(`${environment.urlBase}transactions`, transaction);
+    return trans;
   }
 
   add(category,value,date, name, note){

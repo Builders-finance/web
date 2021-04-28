@@ -3,6 +3,7 @@ import { DataService } from './shared/services/data';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
 import { NewExpenseComponent } from './components/new-expense/new-expense.component';
+import { PaymentStatus, PaymentType, Transaction } from './shared/models/transaction.model';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     backdrop: true,
     ignoreBackdropClick: false
   };
-  newExpense = {}
+  newExpense: Transaction;
 
   newExpenseLoadingTitle:string =""
   newExpenseLoadingText:string=""
@@ -61,13 +62,28 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.newExpenseLoadingTitle = "Wait a moment"
       this.newExpenseShowLoading = true;
 
+      const dt = new Date(this.datePipe.transform(this.newExpense['date'],'yyyy-MM-dd'));
 
-      this.dataService.add(
-        this.newExpense['category'].name,
-        parseFloat(this.newExpense['value']),
-        this.datePipe.transform(this.newExpense['date'],'yyyy-MM-dd'),
-        this.newExpense['location'],
-        this.newExpense['notes'])
+
+      this.newExpense = {
+        rev_exp_id: "1976e508-80c9-4f8c-baf7-8670e2773090",
+        user_id: "c6fe52a9-2eba-47a2-87ec-61a44c25ac8a",
+        valor: parseFloat(this.newExpense['value']),
+        forma_pagamento: PaymentType.cash,
+        status_pagamento: PaymentStatus.paid,
+        data: dt
+      }
+
+      this.dataService.addTransaction(this.newExpense).subscribe(res => {
+        console.log(res);
+      })
+
+      // this.dataService.add(
+      //   this.newExpense['category'].name,
+      //   parseFloat(this.newExpense['value']),
+      //   this.datePipe.transform(this.newExpense['date'],'yyyy-MM-dd'),
+      //   this.newExpense['location'],
+      //   this.newExpense['notes'])
 
         let modal =this.modalRef
         let loading =this.newExpenseShowLoading
