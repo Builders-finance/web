@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Transaction } from '../models/transaction.model';
+import { Pagination } from '../models/pagination.model';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ export class DataService {
 
   public expenses = new Subject<Array<any>>();
   public snapshot = {categories:[], expenses:[], total:0}
+  transactions: Transaction[];
 
   public categories = {
     health: {icon:"heart", name: "Beauty & Health", link:"beauty-and-health"},
@@ -21,7 +23,7 @@ export class DataService {
   }
 
   constructor(private http: HttpClient) {
-    this.loadExpenses()
+    this.loadTransactions()
   }
 
   public getCategories(): Observable<any> {
@@ -34,9 +36,14 @@ export class DataService {
     return trans;
   }
 
+  public loadTransactions() {
+    const transactions = this.http.get(`${environment.urlBase}transactions`);
+    return transactions
+  }
+
   add(category,value,date, name, note){
 
-    this.loadExpenses()
+    this.loadTransactions()
 
     this.snapshot.expenses = JSON.parse(localStorage.getItem('expenses'))
 
@@ -51,12 +58,12 @@ export class DataService {
   }
 
   getByDate(date){
-    this.loadExpenses();
+    this.loadTransactions();
     return this.snapshot.expenses.filter(e=>e.date === date)
   }
 
   getByCategory(category){
-    this.loadExpenses()
+    this.loadTransactions()
     const dates = []
     const items = this.snapshot.expenses.filter(e=> e.category === category)
     const result = []
@@ -86,15 +93,14 @@ export class DataService {
     }
   }
 
+
   get summary () {
 
     const result = []
     const categories =[]
 
-    this.loadExpenses();
-
     this.snapshot.expenses.map(e=>{
-      if(!categories.includes(e.category)){
+      if(!categories.includes(e.category)) {
         // controll categories found
         categories.push(e.category)
 
@@ -130,11 +136,5 @@ export class DataService {
 
   }
 
-  loadExpenses(){
-    if(!localStorage.getItem('expenses')){
-      localStorage.setItem('expenses',JSON.stringify([]))
-    }
 
-    this.snapshot.expenses = JSON.parse(localStorage.getItem('expenses'))
-  }
 }
