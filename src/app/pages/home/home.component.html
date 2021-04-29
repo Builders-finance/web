@@ -11,11 +11,11 @@
                 <a class="nav-link" href="#">Year</a>
             </li>
             </ul>
-        
-            <h3 class="display-4">{{total  | currency: 'USD' }}</h3>   
 
-        <div class="container chart-container">   
-            <canvas  id="chart"></canvas>           
+            <h3 class="display-4">{{totalVal  | currency: 'BRL' }}</h3>
+
+        <div class="container chart-container">
+            <canvas  id="chart"></canvas>
         </div>
         <ul class="mt-4 nav nav-tabs justify-content-center">
             <li class="nav-item">
@@ -23,8 +23,8 @@
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">ACTIVITIES</a>
-            </li>            
+            </li>
         </ul>
     </div>
-</div>     
+</div>
 <app-categories ></app-categories>
