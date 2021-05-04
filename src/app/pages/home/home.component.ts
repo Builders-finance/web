@@ -24,28 +24,31 @@ export class HomeComponent implements OnInit {
       this.updateChart()
     })
 
-    this.updateChart();
     this.totalValue();
+
   }
 
   public totalValue() {
-    this.dataService.loadTransactions().subscribe((response: Pagination<Transaction>) => {
-      this.transactions = response.data;
+    this.dataService.loadTransactions().subscribe((response: any[]) => {
+      this.transactions = response as Transaction[];
+      this.updateChart();
     });
   }
 
   get totalVal() {
-    let total = this.transactions ? this.transactions.map(tr => tr.valor).reduce((a,b) => a+b): 0;
-    return total
+    if(this.transactions) {
+      let total = this.transactions.length > 0 ? this.transactions.map(tr => tr.transaction_valor).reduce((a,b) => a+b): 0;
+      return total
+    } return 0
   }
 
   updateChart(){
 
-    this.summary=this.dataService.summary;
+    // this.summary=this.dataService.summary;
     // this.total = this.summary.length > 0  ?this.summary.map(s=>s.total).reduce((a,b)=>a+b): 0;
-    const labels =  this.summary.map(e=>e.category.name)
-    const data = this.summary.map(c=>c.total)
-
+    const labels =  ['comida', 'Transporte']
+    const data = this.transactions.map(tr => tr.transaction_valor);
+    console.log(this.transactions)
     const colors =[  'rgb(207, 169, 200)','rgb(235, 149, 83,1)','rgb(74, 184, 147)','rgb(232, 93, 87)']
 
     this.chart = new Chart('chart', {

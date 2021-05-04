@@ -62,62 +62,7 @@ export class DataService {
     return this.snapshot.expenses.filter(e=>e.date === date)
   }
 
-  getByCategory(category){
-    this.loadTransactions()
-    const dates = []
-    const items = this.snapshot.expenses.filter(e=> e.category === category)
-    const result = []
 
-    items.map(i=> {
-      if(!dates.includes(i.date)){
-        dates.push(i.date)
-        const itemsOnDate =  items.filter(d=>d.date === i.date)
-        const totalOnDate = itemsOnDate.map(i=>i.value).reduce((a,b)=> a + b)
-        result.push({ date: i.date, items:itemsOnDate, total: totalOnDate})
-      }
-    })
-
-    return result
-  }
-
-  getByLink(link){
-
-    const category = Object.entries(this.categories).find(c=>c[1].link === link)
-
-    if(category.length > 0){
-      return {  category,
-                items: this.getByCategory(category[0])}
-    }
-    else{
-      return {}
-    }
-  }
-
-
-  get summary () {
-
-    const result = []
-    const categories =[]
-
-    this.snapshot.expenses.map(e=>{
-      if(!categories.includes(e.category)) {
-        // controll categories found
-        categories.push(e.category)
-
-        let category = this.getByCategory(e.category)
-
-        const total = category.map(i=>i.total).reduce((a,b)=> a + b)
-
-        result.push({
-          category: this.categories[e.category],
-          total,
-          items:category
-        })
-      }
-    })
-
-    return result
-  }
 
   generate(){
 

@@ -43,7 +43,7 @@ export class DetailComponent implements OnInit {
   }
 
   load(category){
-    this.category = this.dataService.getByLink(category)    
+    // this.category = this.dataService.getByLink(category)
 
     // sort items by date
     debugger
@@ -58,7 +58,7 @@ export class DetailComponent implements OnInit {
     const colors =[]
 
     let chartData = JSON.parse(JSON.stringify(this.category.items)).sort((a,b)=> new Date(a.date) > new Date(b.date)? 1: -1)
-    
+
     chartData = chartData.map(c=>{
       debugger
       const date = new Date(c.date+"T00:00:00")
@@ -72,12 +72,12 @@ export class DetailComponent implements OnInit {
 
       // update chart labels and data
       this.chart.data.labels = labels;
-      this.chart.data.datasets[0].data = chartData;      
+      this.chart.data.datasets[0].data = chartData;
       this.chart.data.datasets[0].backgroundColor = colors;
-      this.chart.update();      
+      this.chart.update();
     }
     else{
-      
+
       this.chart = new Chart('chartCategory', {
         type: 'bar',
         data: {
@@ -86,7 +86,7 @@ export class DetailComponent implements OnInit {
                 data: chartData,
                 backgroundColor: colors,
                 borderColor:'rgb(207, 169, 200)',
-                borderWidth:1        
+                borderWidth:1
             }]
         },
         options: {
@@ -123,7 +123,7 @@ export class DetailComponent implements OnInit {
               }
             }]
           }
-        }      
+        }
       });
     }
   }
