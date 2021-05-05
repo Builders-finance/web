@@ -70,13 +70,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
       this.transaction = {
-        transaction_rev_exp_id: this.newExpense['category'].id,
-        transaction_user_id: "c6fe52a9-2eba-47a2-87ec-61a44c25ac8a",
-        transaction_valor: parseFloat(this.newExpense['value']),
-        transaction_forma_pagamento: this.newExpense['formaPagamento'].value,
-        transaction_status_pagamento: this.newExpense['statusPagamento'].value,
-        transaction_description: this.newExpense['notes'],
-        transaction_data: dt
+        rev_exp_id: this.newExpense['category'].id,
+        user_id: "c6fe52a9-2eba-47a2-87ec-61a44c25ac8a",
+        valor: parseFloat(this.newExpense['value']),
+        forma_pagamento: this.newExpense['formaPagamento'].value,
+        status_pagamento: this.newExpense['statusPagamento'].value,
+        description: this.newExpense['notes'],
+        data: dt
       }
 
 
@@ -94,13 +94,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         }, err => {
           this.toastr.error('Erro!', 'Houve um erro inesperado, tente novamente mais tarde...');
         });
-
-      // this.dataService.add(
-      //   this.newExpense['category'].name,
-      //   parseFloat(this.newExpense['value']),
-      //   this.datePipe.transform(this.newExpense['date'],'yyyy-MM-dd'),
-      //   this.newExpense['location'],
-      //   this.newExpense['notes'])
     }
 
   }

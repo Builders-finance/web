@@ -27,4 +27,4 @@
         </ul>
     </div>
 </div>
-<app-categories [transactions]='transactions' ></app-categories>
+<app-categories *ngIf="transactions" [transactions]='transactions' ></app-categories>

@@ -4,6 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Transaction } from '../models/transaction.model';
 import { Pagination } from '../models/pagination.model';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,6 +13,8 @@ import { Pagination } from '../models/pagination.model';
 export class DataService {
 
   public expenses = new Subject<Array<any>>();
+
+  private transactionsSubject = new Subject<any>();
   public snapshot = {categories:[], expenses:[], total:0}
   transactions: Transaction[];
 
@@ -23,7 +26,7 @@ export class DataService {
   }
 
   constructor(private http: HttpClient) {
-    this.loadTransactions()
+    this.loadTransactions();
   }
 
   public getCategories(): Observable<any> {
@@ -32,13 +35,22 @@ export class DataService {
   }
 
   public addTransaction(transaction: Transaction) {
-    const trans = this.http.post(`${environment.urlBase}transactions`, transaction);
+    const trans = this.http.post(`${environment.urlBase}transactions`, transaction)
+      .pipe(
+        tap(() => {
+          this.transactionsSubject.next();
+        })
+      )
     return trans;
   }
 
   public loadTransactions() {
     const transactions = this.http.get(`${environment.urlBase}transactions`);
     return transactions
+  }
+
+  get refreshTransaction() {
+    return this.transactionsSubject;
   }
 
   add(category,value,date, name, note){
