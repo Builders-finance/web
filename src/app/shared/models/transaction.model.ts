@@ -13,12 +13,11 @@ export enum PaymentType {
 }
 
 export interface Transaction {
-  transaction_description?: string,
-  transaction_rev_exp_id: string,
-  transaction_user_id: string,
-  transaction_valor: number,
-  transaction_forma_pagamento: PaymentType,
-  transaction_status_pagamento: PaymentStatus,
-  transaction_data: Date,
-  revexp_name?: string
+  description?: string,
+  rev_exp_id: string,
+  user_id: string,
+  valor: number,
+  forma_pagamento: PaymentType,
+  status_pagamento: PaymentStatus,
+  data: Date
 }
