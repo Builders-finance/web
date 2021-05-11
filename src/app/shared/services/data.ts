@@ -53,45 +53,6 @@ export class DataService {
     return this.transactionsSubject;
   }
 
-  add(category,value,date, name, note){
-
-    this.loadTransactions()
-
-    this.snapshot.expenses = JSON.parse(localStorage.getItem('expenses'))
-
-    if(value < 0){
-      this.expenses.next([{error:{message:"negative"}}])
-    }
-    else{
-      this.snapshot.expenses.push({category,date,value, name, note})
-      localStorage.setItem('expenses', JSON.stringify(this.snapshot.expenses))
-      this.expenses.next(this.snapshot.expenses)
-    }
-  }
-
-  getByDate(date){
-    this.loadTransactions();
-    return this.snapshot.expenses.filter(e=>e.date === date)
-  }
-
-
-
-  generate(){
-
-
-    if(!localStorage.getItem('expenses')){
-      localStorage.setItem('expenses',JSON.stringify([]))
-      // this.add("coffee",20, '2020-05-25',"Starbucks")
-      // this.add("coffee",4, '2020-05-25',"MC Donalds")
-      // this.add("coffee",30, '2020-05-24',"Starbucks")
-      // this.add("utilities",40, '2020-05-25',"Cellphone")
-      // this.add("coffee",50, '2020-05-20',"Burger King")
-      // this.add("transportation",60, '2020-05-20',"Uber")
-      // this.add("health",70, '2020-05-25',"Makeup")
-    }
-
-
-  }
 
 
 }

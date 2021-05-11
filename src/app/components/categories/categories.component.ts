@@ -19,17 +19,16 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('trans', this.transactions)
-    // const summary = this.dataService.summary
-    // console.log(summary)
-    // this.items = summary
-    // this.expensesSubscriber.subscribe(data=> {this.items=this.dataService.summary; console.log('subscribe',this.dataService.summary)})
+  }
+
+  saveTransactionLocal(transaction: TransactionDTO) {
+    localStorage.setItem('transactionDetail', JSON.stringify(transaction))
   }
 
 
 
   ngOnDestroy(){
     if(this.expensesSubscriber){
-     // this.expensesSubscriber.unsubscribe()
     }
   }
 
