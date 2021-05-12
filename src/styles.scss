@@ -1,5 +1,7 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/theming';
 @import 'assets/scss/index';
-@import '~ngx-toastr/toastr';
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {  }
@@ -28,3 +30,8 @@
 //       left: 0;
 //     }
 //   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

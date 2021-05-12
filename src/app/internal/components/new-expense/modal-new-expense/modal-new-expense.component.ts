@@ -1,9 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { NewExpenseComponent } from 'src/app/internal/components/new-expense/new-expense.component';
+import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { DataService } from 'src/app/shared/services/data';
 
@@ -14,7 +13,6 @@ import { DataService } from 'src/app/shared/services/data';
 })
 export class ModalNewExpenseComponent implements OnInit {
   @ViewChild(NewExpenseComponent, { read: false })
-  modalRef: BsModalRef;
   config = {
     backdrop: true,
     ignoreBackdropClick: false
@@ -28,9 +26,8 @@ export class ModalNewExpenseComponent implements OnInit {
   transaction: Transaction;
 
   constructor(@Inject(DataService) private dataService: DataService,
-  private modalService: BsModalService,
-  private datePipe: DatePipe,
-  private toastr: ToastrService) { }
+  private toastService: ToastService,
+  private datePipe: DatePipe) { }
 
   ngOnInit() {
   }
@@ -63,15 +60,14 @@ export class ModalNewExpenseComponent implements OnInit {
         .pipe(
           finalize(() => {
             this.newExpenseShowLoading = false;
-            this.modalRef.hide();
           }),
         )
         .subscribe(res => {
           if(res) {
-            this.toastr.success('Sucesso!', 'Transação salva com sucesso!');
+            this.toastService.showSuccess('Sucesso!', 'Transação salva com sucesso!');
           }
         }, err => {
-          this.toastr.error('Erro!', 'Houve um erro inesperado, tente novamente mais tarde...');
+          this.toastService.showDanger('Erro!', 'Houve um erro inesperado, tente novamente mais tarde...');
         });
     }
 

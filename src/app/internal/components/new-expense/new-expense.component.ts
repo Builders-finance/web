@@ -1,13 +1,9 @@
 import { RevExp } from '../../../shared/models/revExp.model';
-import { Component, OnInit, Inject, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from 'src/app/shared/services/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Pagination } from 'src/app/shared/models/pagination.model';
 import { PaymentStatus, PaymentType } from 'src/app/shared/models/transaction.model';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { ptBrLocale } from 'ngx-bootstrap/locale';
-import { BsLocaleService } from 'ngx-bootstrap';
-defineLocale('pt-br', ptBrLocale);
 
 @Component({
   selector: 'app-new-expense',
@@ -57,8 +53,8 @@ export class NewExpenseComponent implements OnInit {
     notes: new FormControl(''),
   });
 
-  constructor(@Inject(DataService) private dataService: DataService, private localeService: BsLocaleService) {
-    localeService.use('pt-br');
+  constructor(@Inject(DataService) private dataService: DataService) {
+
   }
 
   ngOnInit() {

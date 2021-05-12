@@ -3,7 +3,6 @@ import { DataService } from 'src/app/shared/services/data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { DatePipe,CurrencyPipe } from '@angular/common';
-import { debug } from 'util';
 
 @Component({
   selector: 'app-detail',

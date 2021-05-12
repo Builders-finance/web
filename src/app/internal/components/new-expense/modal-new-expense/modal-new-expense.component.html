@@ -1,6 +1,7 @@
-<ng-template #new>
+<!-- <ng-template #new>
   <div class="d-flex justify-content-between app-header">
-      <fa name="angle-left" class="icon" (click)="modalRef.hide()"></fa>
+      <!-- <fa name="angle-left" class="icon" (click)="modalRef.hide()"></fa>
+      <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
        <h5 class="app-link flex-fill">Receita / Despesa</h5>
     </div>
     <div class="modal-body">
@@ -20,4 +21,16 @@
       <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
     </div>
 
-</ng-template>
+</ng-template> -->
+  <h1 mat-dialog-title>
+    <span>Receita / Despesa</span>
+  </h1>
+  <div mat-dialog-content>
+    <app-new-expense  (isValid)=validChanged($event) [(data)]="newExpense" [displayErrors]="displayFormErrors">
+    </app-new-expense >
+  </div>
+  <div mat-dialog-actions class="end">
+    <button mat-button mat-dialog-close color="primary" [mat-dialog-close]="true">Fechar</button>
+    <button mat-raised-button type="submit" color="primary">Salvar</button>
+  </div>
+

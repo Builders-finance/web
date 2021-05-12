@@ -1,26 +1,26 @@
 .financial{
     &-lists{
         .list-group{
-            height: calc(100vh - 282px);
-            overflow: scroll;
-            scroll-behavior: smooth;
+            // height: calc(100vh - 282px);
+            // overflow: scroll;
+            // scroll-behavior: smooth;
 
             .list-group-item{
                 h4{
                     color:#6a5a80;
                     font-weight: 400;
                 }
-                
-                fa{
+
+                fa-icon{
                     background: #f74386;
                     font-size: 1.5em;
                     padding: 8px;
                     color: #ffffff;
                     border-radius: 5px;
                     width: 2em;
-                    text-align: center;     
-                    margin-right: 1rem;   
-                    
+                    text-align: center;
+                    margin-right: 1rem;
+
                     &:last-of-type{
                         background: unset;
                         padding: 0;

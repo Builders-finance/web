@@ -16,7 +16,7 @@
     <div class="form-group d-flex p-3"
         [ngClass]="{'error': (displayErrors || formGroupControls.value.touched) && formGroupControls.category.errors}">
         <label for="inputCategory">
-            <fa name="star"></fa>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
         </label>
         <div class="ng-autocomplete">
             <ng-autocomplete
@@ -30,7 +30,7 @@
 
             <ng-template #itemTemplate let-item class="">
                 <div class="d-flex align-items-center">
-                    <fa name="heart"></fa>
+                  <fa-icon [icon]="['fas', 'heart']"></fa-icon>
                     <a [innerHTML]="item.name" >
                             </a>
                 </div>
@@ -44,13 +44,13 @@
     </div>
     <div class="form-group d-flex p-3"
     [ngClass]="{'error': (displayErrors || formGroupControls.date.touched) && formGroupControls.date.errors}">
-        <label for="inputDate" (click)="dp.toggle()"><fa name="calendar"></fa></label>
-        <input type="text" class="form-control" id="inputDate"
+        <label for="inputDate"><fa-icon [icon]="['far', 'calendar-alt']"></fa-icon></label>
+        <!-- <input type="text" class="form-control" id="inputDate"
         formControlName="date" readonly="readonly"
         #dp="bsDatepicker"
            bsDatepicker
            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY',  returnFocusToInput: true, containerClass: 'theme-orange', adaptivePosition:true }"
-           [bsValue]="bsValue" [maxDate]="maxDate">
+           [bsValue]="bsValue" [maxDate]="maxDate"> -->
 
     </div>
 
@@ -90,7 +90,7 @@
 
     <div class="form-group d-flex"
      [ngClass]="{'error': (displayErrors || formGroupControls.notes.touched) && formGroupControls.notes.errors}">
-        <accordion [isAnimated]="true" class="list-group">
+        <!-- <accordion [isAnimated]="true" class="list-group">
             <accordion-group [isOpen]="false">
                 <div accordion-heading class="d-flex flex-column">
                     <label class="title"><fa name="sticky-note"></fa>Descrição</label>
@@ -101,7 +101,7 @@
                     placeholder="Digite aqui alguma descrição..."></textarea>
                 </div>
             </accordion-group>
-        </accordion>
+        </accordion> -->
     </div>
 
 </form>
