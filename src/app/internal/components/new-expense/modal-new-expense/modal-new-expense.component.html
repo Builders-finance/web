@@ -23,14 +23,14 @@
 
 </ng-template> -->
   <h1 mat-dialog-title>
+    <mat-icon mat-dialog-close class="cursor mr-3" style="font-size: 1.5em">chevron_left</mat-icon>
     <span>Receita / Despesa</span>
   </h1>
   <div mat-dialog-content>
     <app-new-expense  (isValid)=validChanged($event) [(data)]="newExpense" [displayErrors]="displayFormErrors">
     </app-new-expense >
   </div>
-  <div mat-dialog-actions class="end">
-    <button mat-button mat-dialog-close color="primary" [mat-dialog-close]="true">Fechar</button>
+  <div mat-dialog-actions align="center">
     <button mat-raised-button type="submit" color="primary">Salvar</button>
   </div>
 

@@ -65,8 +65,7 @@ export class NewExpenseComponent implements OnInit {
 
     // this.categories = Object.entries(this.dataService.categories).map(i=> { return{ name: i[0], value:i[1], search: i[1].name }})
     // console.log(this.categories)
-    this.maxDate.
-    setDate(this.maxDate.getDate() + 7);
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
 
     this.formGroupExpense.valueChanges.subscribe(value=> {console.log(value), this.dataChange.emit(value), this.isValid.emit(this.formGroupExpense.valid)})
   }

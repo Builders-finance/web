@@ -30,8 +30,9 @@ export class HeaderComponent implements OnInit {
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.position = { top: '10' };
-    dialogConfig.hasBackdrop = false;
+    dialogConfig.hasBackdrop = true;
     dialogConfig.width = width;
+    dialogConfig.panelClass = 'mat-dialog-override';
     dialogConfig.data = {};
     const modalRef = this.dialog.open(ModalNewExpenseComponent, dialogConfig);
 

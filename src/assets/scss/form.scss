@@ -3,10 +3,8 @@
         label{
             align-self: center;
 
-            fa{
-                i{
-                    font-size: 1.5em;
-                }
+            fa-icon{
+                font-size: 1.5em;
             }
         }
         &.error{
@@ -17,10 +15,10 @@
                 input{
                     border: 0 !important;
                 }
-                
+
             }
 
-            label, fa{
+            label, fa-icon{
 
                 color: #dc3545 !important;
             }
