@@ -6,14 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { ComponentsModule } from './components/components.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
-import { UiModule } from './shared/ui/ui.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
@@ -34,8 +32,6 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule,
-    UiModule,
     AutocompleteLibModule,
     HttpClientModule,
     ModalModule.forRoot(),
