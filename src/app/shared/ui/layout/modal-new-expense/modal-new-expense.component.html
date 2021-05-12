@@ -1,0 +1,23 @@
+<ng-template #new>
+  <div class="d-flex justify-content-between app-header">
+      <fa name="angle-left" class="icon" (click)="modalRef.hide()"></fa>
+       <h5 class="app-link flex-fill">Receita / Despesa</h5>
+    </div>
+    <div class="modal-body">
+      <div class="row align-items-center" *ngIf="newExpenseShowLoading">
+        <div class="col">
+          <app-loading [title]="newExpenseLoadingTitle" [text]="newExpenseLoadingText" ></app-loading>
+        </div>
+      </div>
+      <div class="row" *ngIf="!newExpenseShowLoading">
+          <div class="col">
+              <app-new-expense  (isValid)=validChanged($event) [(data)]="newExpense" [displayErrors]="displayFormErrors">
+              </app-new-expense >
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+
+</ng-template>
