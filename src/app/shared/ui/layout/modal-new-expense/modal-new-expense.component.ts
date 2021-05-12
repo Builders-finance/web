@@ -13,7 +13,7 @@ import { DataService } from 'src/app/shared/services/data';
   styleUrls: ['./modal-new-expense.component.scss']
 })
 export class ModalNewExpenseComponent implements OnInit {
-  @ViewChild(NewExpenseComponent, {read:false, static:true})
+  @ViewChild(NewExpenseComponent, { read: false })
   modalRef: BsModalRef;
   config = {
     backdrop: true,
