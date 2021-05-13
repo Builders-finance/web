@@ -1,6 +1,35 @@
-<div class="d-flex justify-content-between app-header">
+<!-- <div class="d-flex justify-content-between app-header">
   <mat-icon>menu</mat-icon>
    <h5 class="pt-3 pb-3 app-link" routerLink="home">Builders Financial App</h5>
-   <!-- <fa name="plus" class="icon" (click)="open()"></fa> -->
    <mat-icon (click)="open()">add</mat-icon>
+</div> -->
+<div class="app-header">
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row class="d-flex justify-content-between">
+
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="toolbar-title"> <a [routerLink]="['/admin']" class="navbar-brand">Builders Financial App</a></span>
+
+    <div class="justify-content-end">
+      <button mat-icon-button>
+        <mat-icon (click)="open()">add</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="auth">
+        <mat-icon> person </mat-icon>
+      </button>
+      <mat-menu #auth="matMenu">
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon> exit_to_app </mat-icon>
+          <span> Sair </span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+
+</mat-toolbar>
 </div>

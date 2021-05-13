@@ -14,7 +14,7 @@ import { FontawesomeSharedModule } from './fontawesome-shared/fontawesome-shared
    NgbModule
   ],
  declarations: [
-    ToastComponent,
+    ToastComponent
   ],
  exports: [ CommonModule, FormsModule, MaterialSharedModule, FontawesomeSharedModule, NgbModule, ToastComponent ]
 })

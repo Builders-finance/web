@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UserGuard } from '../shared/helpers/user.guard';
 import { LayoutComponent } from '../shared/ui/layout/layout.component';
 
 
@@ -16,7 +17,8 @@ const routes: Routes = [
         path: ':category/details',
         loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailModule),
       }
-    ]
+    ],
+    canActivate: [UserGuard],
   },
   {
     path: '**',

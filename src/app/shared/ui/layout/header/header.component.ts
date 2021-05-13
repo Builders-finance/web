@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ModalNewExpenseComponent } from 'src/app/internal/components/new-expense/modal-new-expense/modal-new-expense.component';
+import { LoginService } from 'src/app/external/pages/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { ModalNewExpenseComponent } from 'src/app/internal/components/new-expens
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public dialog: MatDialog, private media: MediaMatcher) { }
+  constructor(public dialog: MatDialog, private media: MediaMatcher, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -39,6 +40,10 @@ export class HeaderComponent implements OnInit {
     modalRef.afterClosed().subscribe(result => {
       // console.log(result);
     });
+  }
+
+  public logout() {
+    this.loginService.logout();
   }
 
 }

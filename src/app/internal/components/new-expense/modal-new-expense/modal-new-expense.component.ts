@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { finalize } from 'rxjs/operators';
 import { NewExpenseComponent } from 'src/app/internal/components/new-expense/new-expense.component';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
@@ -13,10 +14,6 @@ import { DataService } from 'src/app/shared/services/data';
 })
 export class ModalNewExpenseComponent implements OnInit {
   @ViewChild(NewExpenseComponent, { read: false })
-  config = {
-    backdrop: true,
-    ignoreBackdropClick: false
-  };
   newExpenseLoadingTitle:string =""
   newExpenseLoadingText:string=""
   newExpenseShowLoading:boolean = false
@@ -27,7 +24,8 @@ export class ModalNewExpenseComponent implements OnInit {
 
   constructor(@Inject(DataService) private dataService: DataService,
   private toastService: ToastService,
-  private datePipe: DatePipe) { }
+  private datePipe: DatePipe,
+  public dialogRef: MatDialogRef<ModalNewExpenseComponent>) { }
 
   ngOnInit() {
   }
@@ -64,10 +62,11 @@ export class ModalNewExpenseComponent implements OnInit {
         )
         .subscribe(res => {
           if(res) {
-            this.toastService.showSuccess('Sucesso!', 'Transação salva com sucesso!');
+            this.toastService.showSuccess('Transação salva com sucesso!');
+            this.dialogRef.close();
           }
         }, err => {
-          this.toastService.showDanger('Erro!', 'Houve um erro inesperado, tente novamente mais tarde...');
+          this.toastService.showDanger('Houve um erro inesperado, tente novamente mais tarde...');
         });
     }
 

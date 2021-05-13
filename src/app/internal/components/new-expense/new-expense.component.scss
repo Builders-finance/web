@@ -1,46 +1,15 @@
-::ng-deep  ng-autocomplete{
-    .autocomplete-container{
-        box-shadow: unset;
+.font-form {
+  font-size: 1.5em;
+  color: #523479;
+}
+.icon-form-invalid{
+  color: #dc3545 !important;
+  font-size: 1.5em;
+}
 
-        &.active{
-            // Extra small devices (portrait phones, less than 576px)
-            @media (max-width: 767.98px) {
-                width: 100%;
-                background: #523479ad;
-                display: block;
-                height: calc(100vh - 66px);
-                top: 0;
-                left: 0;
-                position: absolute;
-                padding: 32px;
-            }
-        }
-        .input-container{
-
-            input{
-                font-size: 1.2em !important;
-            }
-        }
-
-        .suggestions-container{
-            width: calc(100vw - 36px) !important;
-            li{
-                div{
-                    div{
-                        fa-icon{
-                            padding:0 16px;
-                            color: #523479 !important;
-                        }
-
-                        a{
-                            padding-left: 0;
-                        }
-
-                    }
-                }
-            }
-        }
-    }
+.icon-form-valid{
+  color: gray !important;
+  font-size: 1.5em !important;
 }
 
 ::ng-deep .btn-primary.dropdown-toggle {
@@ -103,21 +72,6 @@ form{
 
         button, label {
           display:block;
-        }
-
-        input, .ng-autocomplete{
-            border-top: 0;
-            border-left: 0;
-            border-right: 0;
-            border-radius: 0;
-            padding-top: 0;
-            margin-left: 8px;
-
-            ng-autocomplete{
-                display: block;
-                margin: 0 !important;
-                width: 100%;
-            }
         }
 
         input:read-only{

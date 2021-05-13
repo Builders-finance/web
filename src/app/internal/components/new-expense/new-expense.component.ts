@@ -4,11 +4,31 @@ import { DataService } from 'src/app/shared/services/data';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Pagination } from 'src/app/shared/models/pagination.model';
 import { PaymentStatus, PaymentType } from 'src/app/shared/models/transaction.model';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import * as moment from 'moment';
+import { AutoCompleteService } from 'src/app/shared/services/auto-complete.service';
+import { map, startWith } from 'rxjs/operators';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'L',
+  },
+  display: {
+    dateInput: 'L',
+    monthYearLabel: 'DD/MM/YYYY',
+    dateA11yLabel: 'L',
+    monthYearA11yLabel: 'DD/MM/YYYY',
+  },
+};
 @Component({
   selector: 'app-new-expense',
   templateUrl: './new-expense.component.html',
-  styleUrls: ['./new-expense.component.scss']
+  styleUrls: ['./new-expense.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class NewExpenseComponent implements OnInit {
 
@@ -16,7 +36,7 @@ export class NewExpenseComponent implements OnInit {
   bsValue = new Date();
   maxDate = new Date();
   categorySelected = {}
-
+  filteredCategories: any;
   formasPagamento = [
     {name: 'Débito', value: PaymentType.debit},
     {name: 'Crédito', value: PaymentType.credit},
@@ -53,7 +73,7 @@ export class NewExpenseComponent implements OnInit {
     notes: new FormControl(''),
   });
 
-  constructor(@Inject(DataService) private dataService: DataService) {
+  constructor(@Inject(DataService) private dataService: DataService, public autoCompleteService: AutoCompleteService) {
 
   }
 
@@ -61,6 +81,12 @@ export class NewExpenseComponent implements OnInit {
 
     this.dataService.getCategories().subscribe((response: Pagination<RevExp>) => {
       this.categories = response.data
+      this.filteredCategories = this.formGroupExpense.controls.category.valueChanges
+          .pipe(
+            startWith(''),
+            map(model => model ?
+              this.autoCompleteService.filterAutoComplete(model, this.categories, this.formGroupExpense.controls.category.value) : this.categories.slice())
+          );
     })
 
     // this.categories = Object.entries(this.dataService.categories).map(i=> { return{ name: i[0], value:i[1], search: i[1].name }})

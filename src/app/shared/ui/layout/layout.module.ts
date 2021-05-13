@@ -8,6 +8,10 @@ import { LoadingModule } from '../loading/loading.module';
 import { FontawesomeSharedModule } from '../../fontawesome-shared/fontawesome-shared.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent],
   imports: [
@@ -18,7 +22,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     FontawesomeSharedModule,
     MatIconModule,
     MatDialogModule,
-    ComponentsModule
+    ComponentsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatButtonModule
   ],
   exports: [],
   providers: [DatePipe]

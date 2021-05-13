@@ -5,7 +5,6 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { RouterModule } from '@angular/router';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '../../shared/ui/ui.module';
 import { FontawesomeSharedModule } from 'src/app/shared/fontawesome-shared/fontawesome-shared.module';
@@ -20,7 +19,6 @@ import { MaterialSharedModule } from 'src/app/shared/material-shared/material-sh
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AutocompleteLibModule,
     FontawesomeSharedModule,
     MaterialSharedModule,
     NgxMaskModule,
