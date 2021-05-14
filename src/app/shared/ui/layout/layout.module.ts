@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { PipesModule } from '../../pipes/pipes.module';
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent],
   imports: [
@@ -26,7 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatMenuModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    PipesModule
   ],
   exports: [],
   providers: [DatePipe]

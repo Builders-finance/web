@@ -21,9 +21,12 @@
         A categoria é <strong>obrigatória</strong>
       </mat-error>
       <button mat-icon-button matPrefix class="mr-3">
-        <fa-icon [icon]="['fas', 'heart']" style="margin-left: 15px !important;"
+        <!-- <fa-icon [icon]="['fas', 'heart']" style="margin-left: 15px !important; font-size: 1.7em"
           [ngClass]="formGroupControls.category.errors?.required && !formGroupControls.category.pristine ? 'icon-form-invalid': 'icon-form-valid'">
-        </fa-icon>
+        </fa-icon> -->
+        <mat-icon [ngClass]="formGroupControls.category.errors?.required && !formGroupControls.category.pristine ? 'icon-form-invalid': 'icon-form-valid'"
+        class="icon-form-autocomplete">
+          favorite</mat-icon>
       </button>
     </mat-form-field>
   </div>
@@ -32,7 +35,7 @@
       <input type="tel" matInput [matDatepicker]="pickerLib" formControlName="date" id="date" (focus)="pickerLib.open()"
         maxlength="10">
       <mat-datepicker-toggle matPrefix [for]="pickerLib" id="pickerLib"
-        [ngClass]="formGroupControls.date.errors?.required && !formGroupControls.date.pristine ? 'icon-form-invalid': 'icon-form-valid'">
+        [ngClass]="formGroupControls.date.errors?.required && !formGroupControls.date.pristine ? 'icon-form-datepicker-invalid': 'icon-form-datepicker-valid'">
       </mat-datepicker-toggle>
       <mat-datepicker #pickerLib [disabled]="false"></mat-datepicker>
       <mat-error *ngIf="formGroupControls.date.errors?.required">

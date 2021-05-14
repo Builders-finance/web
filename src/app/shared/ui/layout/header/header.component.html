@@ -22,6 +22,9 @@
         <mat-icon> person </mat-icon>
       </button>
       <mat-menu #auth="matMenu">
+        <button mat-menu-item>
+          <span> {{user?.user.name | firstLastName}} </span>
+        </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">
           <mat-icon> exit_to_app </mat-icon>

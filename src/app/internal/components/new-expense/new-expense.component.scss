@@ -4,12 +4,25 @@
 }
 .icon-form-invalid{
   color: #dc3545 !important;
-  font-size: 1.5em;
 }
 
 .icon-form-valid{
   color: gray !important;
+}
+
+.icon-form-autocomplete {
+  font-size: 2em !important;
+  margin-left: 8px !important;
+}
+
+.icon-form-datepicker-valid {
   font-size: 1.5em !important;
+  color: gray !important;
+}
+
+.icon-form-datepicker-invalid {
+  font-size: 1.5em !important;
+  color: #dc3545 !important;
 }
 
 ::ng-deep .btn-primary.dropdown-toggle {
