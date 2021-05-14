@@ -46,7 +46,12 @@ export class DataService {
 
   public loadTransactions() {
     const transactions = this.http.get(`${environment.urlBase}transactions`);
-    return transactions
+    return transactions;
+  }
+
+  public getTransactionsById(id: string) {
+    const transactions = this.http.get(`${environment.urlBase}transactions/${id}`);
+    return transactions;
   }
 
   get refreshTransaction() {

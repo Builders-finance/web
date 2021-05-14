@@ -1,37 +1,37 @@
 <div class="detail-component">
     <div class="d-flex flex-column app-header">
-        <select  class="pt-0 pb-0" (change)="open($event.target.value)" [(ngModel)]="selected" >
+        <!-- <select  class="pt-0 pb-0" (change)="open($event.target.value)" [(ngModel)]="selected" >
             <option *ngFor="let category of categories" value="{{category[1].link}}" selected="{{selected === category[1].link?'selected':''}}">{{ category[1].name}}</option>
-        </select>  
-        <h3 class="align-self-center title display-4">{{total | currency: 'USD'}}</h3>  
-        <div class="container chart-container">   
-            <canvas  id="chartCategory" ></canvas>           
-        </div>        
+        </select> -->
+        <h3 class="align-self-center title display-4">{{total | currency: 'USD'}}</h3>
+        <div class="container chart-container">
+            <canvas  id="chartCategory" ></canvas>
+        </div>
     </div>
     <div class="container-full content">
-        <div class="row m-sm-0 p-0  m-md-5 container">
-            <div class="col p-0">
-                <a href="#" class="list-group-item list-group-item-action" *ngIf="category.items.length < 1">
-                    <div class="d-flex flex-column justify-content-between lign-items-center text-center">                
+        <div class="row m-sm-0 p-0  m-md-5 ">
+            <div class="col p-0 container">
+                <a href="#" class="list-group-item list-group-item-action" *ngIf="items.length < 1">
+                    <div class="d-flex flex-column justify-content-between lign-items-center text-center">
                     <h5 class="mb-1">Oh no :(</h5>
-                    <p>You didnt registered any expenses</p>
-                    </div>             
-                </a>             
-                <accordion [isAnimated]="true" class="list-group">
-                    <accordion-group [isOpen]="true" *ngFor="let date of items" >
+                    <p>You didn't register any expenses</p>
+                    </div>
+                </a>
+                <accordion [isAnimated]="true" class="list-group container">
+                    <accordion-group [isOpen]="true" *ngFor="let item of items" >
                         <div accordion-heading class="d-flex flex-column">
-                            <label class="title">{{date?.date | date : 'dd MMM, yyyy'}}</label>
-                            <label class="align-self-center subtitle">Day balance {{date?.total | currency: 'USD'}}</label>
+                            <label class="title">{{item?.data | date: 'dd/MM/yyyy'}}</label>
+                            <label class="align-self-center subtitle">Day balance {{ item.soma | currency: 'BRL'}}</label>
                         </div>
-                        <a class="list-group-item list-group-item-action " *ngFor="let item of date?.items">    
+                        <a class="list-group-item list-group-item-action" *ngFor="let i of item.itens">
                             <div class="d-flex justify-content-between lign-items-center p-sm-2 p-md-0">
-                                <h5 class="mb-1">{{item?.name}}</h5>
-                                <small>{{item?.value | currency: 'USD'}}</small>
-                            </div>            
-                        </a>       
-                    </accordion-group>  
+                                <h5 class="mb-1">{{categoryId.nome}}</h5>
+                                <small>{{ i.valor | currency: 'BRL'}}</small>
+                            </div>
+                        </a>
+                    </accordion-group>
                 </accordion>
-    
+
             </div>
         </div>
     </div>
