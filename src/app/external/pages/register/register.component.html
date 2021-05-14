@@ -1,0 +1,64 @@
+<div class="jumbtron-home">
+  <div class="container d-flex justify-content-center">
+    <h1>Cadastre-se</h1>
+  </div>
+</div>
+<div class="lead d-flex justify-content-center mt-3">
+  <mat-card class="w-50">
+    <form [formGroup]="registerForm" class="form-login" autocomplete="off" (ngSubmit)="register()">
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" required id="name" placeholder="Nome" autocomplete="new-name">
+          <mat-error *ngIf="f.name.errors?.required">
+            O nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" required id="password" placeholder="Senha" [type]="hide ? 'password' : 'text'" autocomplete="new-password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder Senha'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="f.password.errors?.required">
+            A senha é <strong>obrigatória</strong>
+          </mat-error>
+          <mat-error *ngIf="f.password.errors?.password?.error">
+            {{f.password.errors?.password?.message}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>Confirme sua senha</mat-label>
+          <input matInput formControlName="passwordConfirm" required id="passwordConfirm" placeholder="Confirme sua Senha"
+          [type]="hide ? 'password' : 'text'" autocomplete="new-passwordConfirm">
+          <mat-error *ngIf="f.passwordConfirm.errors?.required">
+            A confirmação de senha é <strong>obrigatória</strong>
+          </mat-error>
+          <mat-error *ngIf="f.passwordConfirm.errors?.password?.error">
+            {{f.passwordConfirm.errors?.password?.message}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" required id="email" placeholder="E-mail" autocomplete="new-email">
+          <mat-error *ngIf="f.email.errors?.required">
+            O e-mail é <strong>obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="f.email.errors?.email">
+            O e-mail está <strong>inválido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row d-flex justify-content-end">
+        <button mat-flat-button color="secondary" [routerLink]="'/'" type="button"> Voltar</button>
+        <button mat-flat-button color="primary" class="mr-3" [disabled]="!registerForm.valid"> Cadastrar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

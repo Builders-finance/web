@@ -17,7 +17,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): any {
     return next.handle(request).pipe(catchError(err => {
-      this.toast.showDanger(err.error.message);
+      let showError = err.error.message;
+      if(err.error.hasOwnProperty('validation')){
+        if(err.error.validation.body && err.error.validation.body.message){
+          showError = err.error.validation.body.message;
+        }
+      }
+
+      this.toast.showDanger(showError);
       if (err.status === 401) {
           if (this.router.url.indexOf('/login') === -1) {
               // auto logout if 401 response returned from api
