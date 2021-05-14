@@ -1,0 +1,35 @@
+::ng-deep .mat-dialog-override {
+  height: 100vh;
+  mat-dialog-container {
+    padding: 0;
+    border-radius: 0px;
+    > :first-child {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    mat-dialog-title,
+    div[mat-dialog-title] {
+      background-color: black;
+      color: white;
+      padding: 10px;
+      margin: 0;
+    }
+    h1 {
+      margin: 0 !important;
+    }
+    mat-dialog-content,
+    div[mat-dialog-content] {
+      margin: 0;
+      padding: 0;
+      flex-grow: 1;
+      max-height: unset;
+    }
+    mat-dialog-actions,
+    div[mat-dialog-actions] {
+      margin-bottom: 0 !important;
+      background-color: #523479;
+    }
+  }
+
+}

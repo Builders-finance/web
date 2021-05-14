@@ -1,0 +1,108 @@
+.font-form {
+  font-size: 1.5em;
+  color: #523479;
+}
+.icon-form-invalid{
+  color: #dc3545 !important;
+}
+
+.icon-form-valid{
+  color: gray !important;
+}
+
+.icon-form-autocomplete {
+  font-size: 2em !important;
+  margin-left: 8px !important;
+}
+
+.icon-form-datepicker-valid {
+  font-size: 1.5em !important;
+  color: gray !important;
+}
+
+.icon-form-datepicker-invalid {
+  font-size: 1.5em !important;
+  color: #dc3545 !important;
+}
+
+::ng-deep .btn-primary.dropdown-toggle {
+  background-color: #523479 !important;
+  border-color: #523479 !important;
+  color: white !important;
+}
+
+::ng-deep  accordion{
+    width: 100% !important;
+    &-group{
+        .card{
+            padding: 0 !important;
+            background: #ffffff !important;
+
+            .card-header{
+                border-bottom: 0 !important;
+                background: unset !important;
+                padding: 0 !important;
+            }
+
+        }
+        .panel{
+            background:unset !important;
+            .panel-body{
+                .list-group-item{
+                    border: 0 !important;
+                    margin-top:24px;
+                    padding: 0 1.5rem !important;
+                }
+            }
+        }
+    }
+}
+
+form{
+    .form-group{
+        &.header{
+            background-color: #523479;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            .currency{
+              font-size: 32px;
+              color: white;
+              margin-left: 1rem;
+              border-color: #523479;
+              background-color: #523479;
+            }
+            input{
+                border: 0;
+                background: unset;
+                font-size: 32px;
+                color:#ffffff;
+
+                &::placeholder{
+                    color:#ffffff;
+                }
+            }
+        }
+
+        button, label {
+          display:block;
+        }
+
+        input:read-only{
+            background: unset;
+        }
+
+        fa-icon{
+            margin-right: 8px;
+            color: #dae1e7;
+        }
+
+
+    }
+
+  .centered {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+}

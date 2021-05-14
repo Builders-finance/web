@@ -1,0 +1,83 @@
+<form #formNewExpense [formGroup]="formGroupExpense" autocomplete="off" class="form">
+  <div class="form-group header input-group"
+    [ngClass]="{'error': (displayErrors || formGroupControls.value.touched) && formGroupControls.value.errors}">
+    <div class="input-group-prepend">
+      <span class="input-group-text currency" id="basic-addon1">R$</span>
+    </div>
+    <input type="text" class="form-control" id="inputValue" formControlName="value" placeholder="00,00"
+      mask="separator.2" thousandSeparator=".">
+  </div>
+  <div class="form-group d-flex p-3">
+    <mat-form-field appearance="fill" class="full-width">
+      <input matInput aria-label="Categoria" placeholder="Que tipo de transação foi?" [matAutocomplete]="autoCategory"
+        formControlName="category" id="category">
+      <mat-autocomplete #autoCategory="matAutocomplete" [displayWith]="autoCompleteService.displayFn">
+        <mat-option *ngFor="let model of filteredCategories | async" [value]="model">
+          <fa-icon [icon]="['fas', 'star']" class="font-form"></fa-icon>
+          <span class="ml-3">{{model.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="formGroupControls.category.errors?.required">
+        A categoria é <strong>obrigatória</strong>
+      </mat-error>
+      <button mat-icon-button matPrefix class="mr-3">
+        <!-- <fa-icon [icon]="['fas', 'heart']" style="margin-left: 15px !important; font-size: 1.7em"
+          [ngClass]="formGroupControls.category.errors?.required && !formGroupControls.category.pristine ? 'icon-form-invalid': 'icon-form-valid'">
+        </fa-icon> -->
+        <mat-icon [ngClass]="formGroupControls.category.errors?.required && !formGroupControls.category.pristine ? 'icon-form-invalid': 'icon-form-valid'"
+        class="icon-form-autocomplete">
+          favorite</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="form-group d-flex p-3">
+    <mat-form-field class="full-width" appearance="fill">
+      <input type="tel" matInput [matDatepicker]="pickerLib" formControlName="date" id="date" (focus)="pickerLib.open()"
+        maxlength="10">
+      <mat-datepicker-toggle matPrefix [for]="pickerLib" id="pickerLib"
+        [ngClass]="formGroupControls.date.errors?.required && !formGroupControls.date.pristine ? 'icon-form-datepicker-invalid': 'icon-form-datepicker-valid'">
+      </mat-datepicker-toggle>
+      <mat-datepicker #pickerLib [disabled]="false"></mat-datepicker>
+      <mat-error *ngIf="formGroupControls.date.errors?.required">
+        A data é <strong>obrigatória</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group d-flex">
+    <div class="btn-group centered" dropdown>
+      <label for="button-basic1"><strong>Forma de Pagamento</strong></label>
+      <button id="button-basic1" type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic"
+        name="formaPagamento" formControlName="formaPagamento" [matMenuTriggerFor]="menuPayment" ngDefaultControl>
+        {{ formaPagamento.name }} <span class="caret"></span>
+      </button>
+      <mat-menu #menuPayment="matMenu">
+        <button mat-menu-item *ngFor="let fp of formasPagamento" (click)="onChange(fp)">
+          <span>{{ fp.name }}</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="btn-group centered" dropdown>
+      <label for="button-basic1"><strong>Status</strong></label>
+      <button id="button-basic" type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic"
+        name="statusPagamento" formControlName="statusPagamento" [matMenuTriggerFor]="menuStatusPayment"
+        ngDefaultControl>
+        {{ statusPagamento.name }} <span class="caret"></span>
+      </button>
+      <mat-menu #menuStatusPayment="matMenu">
+        <button mat-menu-item *ngFor="let sp of statusPagamentos" (click)="onChangeStatus(sp)">
+          <span>{{ sp.name }}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="form-group d-flex p-3 justify-content-center">
+    <mat-form-field appearance="fill" class="w-75">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput id="inputNotes" formControlName="notes"
+        placeholder="Digite aqui alguma descrição..."></textarea>
+    </mat-form-field>
+  </div>
+
+</form>

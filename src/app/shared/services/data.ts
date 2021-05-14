@@ -30,12 +30,12 @@ export class DataService {
   }
 
   public getCategories(): Observable<any> {
-    const revexp = this.http.get(`${environment.urlBase}revexp`);
+    const revexp = this.http.get(`${environment.urlBase}/revexp`);
     return revexp;
   }
 
   public addTransaction(transaction: Transaction) {
-    const trans = this.http.post(`${environment.urlBase}transactions`, transaction)
+    const trans = this.http.post(`${environment.urlBase}/transactions`, transaction)
       .pipe(
         tap(() => {
           this.transactionsSubject.next();
@@ -45,7 +45,7 @@ export class DataService {
   }
 
   public loadTransactions() {
-    const transactions = this.http.get(`${environment.urlBase}transactions`);
+    const transactions = this.http.get(`${environment.urlBase}/transactions`);
     return transactions
   }
 

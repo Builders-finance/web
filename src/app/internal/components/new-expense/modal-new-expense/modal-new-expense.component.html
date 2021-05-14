@@ -1,0 +1,15 @@
+<div mat-dialog-title class="d-flex justify-content-start align-items-center">
+  <div>
+    <mat-icon mat-dialog-close class="cursor mr-3" style="font-size: 1.5em">chevron_left</mat-icon>
+  </div>
+  <div>
+    <h1><span>Receita / Despesa</span></h1>
+  </div>
+</div>
+<div mat-dialog-content>
+  <app-new-expense (isValid)=validChanged($event) [(data)]="newExpense" [displayErrors]="displayFormErrors">
+  </app-new-expense>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-raised-button type="button" color="primary" (click)="save()">Salvar</button>
+</div>

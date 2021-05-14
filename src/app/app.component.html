@@ -1,31 +1,6 @@
-<div class="container-fluid p-0">
-  <div class="d-flex justify-content-between app-header">
-     <fa name="navicon" class="icon"></fa>
-      <h5 class="pt-3 pb-3 app-link" routerLink="home">Builders Financial App</h5>
-      <fa name="plus" class="icon" (click)="open(new)"></fa>
-  </div>
-  <ng-template #new>
-      <div class="d-flex justify-content-between app-header">
-          <fa name="angle-left" class="icon" (click)="modalRef.hide()"></fa>
-           <h5 class="app-link flex-fill">Receita / Despesa</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row align-items-center" *ngIf="newExpenseShowLoading">
-            <div class="col">
-              <app-loading [title]="newExpenseLoadingTitle" [text]="newExpenseLoadingText" ></app-loading>
-            </div>
-          </div>
-          <div class="row" *ngIf="!newExpenseShowLoading">
-              <div class="col">
-                  <app-new-expense  (isValid)=validChanged($event) [(data)]="newExpense" [displayErrors]="displayFormErrors">
-                  </app-new-expense >
-              </div>
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
-        </div>
-
-  </ng-template>
-  <router-outlet></router-outlet>
-</div>
+<router-outlet>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type="square-jelly-box" [fullScreen] = "true">
+    <p style="color: white" > Carregando... </p>
+</ngx-spinner>
+  <app-toast aria-live="polite" aria-atomic="true"></app-toast>
+</router-outlet>

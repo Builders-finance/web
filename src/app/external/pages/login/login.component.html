@@ -1,0 +1,36 @@
+<div class="jumbtron-home">
+  <div class="container d-flex justify-content-center">
+    <h1>Informe suas credenciais</h1>
+  </div>
+</div>
+<div class="lead d-flex justify-content-center mt-3">
+  <mat-card class="w-50">
+    <form [formGroup]="loginForm" class="form-login" autocomplete="off" (ngSubmit)="login()">
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>Usuário</mat-label>
+          <input matInput formControlName="user" required id="user" placeholder="Usuário" autocomplete="new-user">
+          <mat-error *ngIf="f.user.errors?.required">
+            O usuário é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="standard" class="col-md-12">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" required id="password" placeholder="Senha" [type]="hide ? 'password' : 'text'" autocomplete="new-password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder Senha'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="f.password.errors?.required">
+            A senha é <strong>obrigatória</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row d-flex justify-content-end">
+        <button mat-flat-button color="secondary" [routerLink]="'/'"> Voltar</button>
+        <button mat-flat-button color="primary" class="mr-3" [disabled]="!loginForm.valid"> Entrar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

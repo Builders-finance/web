@@ -1,54 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
-
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { ComponentsModule } from './components/components.module';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatePipe, CurrencyPipe } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
-import { UiModule } from './shared/ui/ui.module';
-import { HttpClientModule } from '@angular/common/http';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(ptBr);
+import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ErrorInterceptor } from './shared/helpers/error.interceptor';
+import { HttpRequestInterceptor } from './shared/helpers/http-request.interceptor';
 
 
-// const maskConfig: Partial<IConfig> = {
-//   validation: false
-// };
+const maskConfig: Partial<IConfig> = {
+  validation: false
+};
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule,
-    UiModule,
-    AutocompleteLibModule,
     HttpClientModule,
-    ModalModule.forRoot(),
-    AccordionModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    NgxMaskModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-center',
-      preventDuplicates: true,
-    }),
+    SharedModule,
+    NgxSpinnerModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
-  providers: [DatePipe, CurrencyPipe],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR'},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
