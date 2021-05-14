@@ -19,5 +19,7 @@ export interface Transaction {
   valor: number,
   forma_pagamento: PaymentType,
   status_pagamento: PaymentStatus,
+  created_at?: Date,
+  updated_at?: Date,
   data: Date
 }

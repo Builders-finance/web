@@ -3,6 +3,9 @@ import { DataService } from 'src/app/shared/services/data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { DatePipe,CurrencyPipe } from '@angular/common';
+// import { debug } from 'util';
+import { Transaction } from 'src/app/shared/models/transaction.model';
+import { GroupByPipe } from 'src/app/shared/pipes/group-by.pipe';
 
 @Component({
   selector: 'app-detail',
@@ -16,66 +19,51 @@ export class DetailComponent implements OnInit {
   categories = []
   data = []
   labels=[]
-  total = 0
+  categoryId: any;
+  total = 0;
+  balanceDay = 0;
   chart:any = {}
   categoryColor ='rgb(207, 169, 200, 0.8)'
   selected = {}
-  items = []
+  items:any;
 
   constructor(@Inject(DataService) private dataService: DataService,
-  private route: ActivatedRoute ,
   private router: Router,
   private datePipe: DatePipe,
-  private currencyPipe: CurrencyPipe ) {
-    this.categoryLink = route.pathFromRoot[1].snapshot.url[0].path
+  private currencyPipe: CurrencyPipe, private groupByPipe: GroupByPipe ) {
   }
 
    ngOnInit() {
-    this.total = 0
-    this.load(this.categoryLink)
-
-    if(!this.category){
-     this.router.navigate(['home'])
-    }
-
+    this.load();
     this.categories = Object.entries(this.dataService.categories)
   }
 
-  load(category){
-    // this.category = this.dataService.getByLink(category)
-
-    // sort items by date
-    debugger
-    this.items = JSON.parse(JSON.stringify(this.category.items)).sort((a,b)=> new Date(a.date) > new Date(b.date)? -1: 1)
-    this.selected = category
-    this.total = this.category['items'].length > 0 ? this.category['items'].map(i=>i.total).reduce((a,b)=> a + b):0;
-    this.loadChart()
+  async load(){
+    this.categoryId = JSON.parse(localStorage.getItem('transactionDetail'));
+    this.dataService.getTransactionsById(this.categoryId.id).subscribe(async (res: Transaction[]) => {
+      this.items = await this.groupByPipe.transform(res, 'data', 'valor');
+      this.loadChart();
+      this.total = res.length > 0 ? res.map(i => i.valor).reduce((a,b) => a + b) : 0;
+      console.log(this.items);
+    });
   }
 
-  loadChart(){
+
+
+  loadChart() {
     const labels  = []
     const colors =[]
-
-    let chartData = JSON.parse(JSON.stringify(this.category.items)).sort((a,b)=> new Date(a.date) > new Date(b.date)? 1: -1)
-
-    chartData = chartData.map(c=>{
-      debugger
-      const date = new Date(c.date+"T00:00:00")
-      const label = this.datePipe.transform(date,'dd/MMM')
-      labels.push(label)
+    let chartData = this.items.sort((a,b)=> new Date(a.key) > new Date(b.key)? 1: -1)
+    chartData = this.items.map(c => {
+      const date = this.datePipe.transform(c.key,'dd/MMM');
+      labels.push(date);
       colors.push(this.categoryColor)
-      return {x: label, y: c.total, legend:this.currencyPipe.transform(c.total,'USD')}
+      return {
+        x: date,
+        y: c.total,
+        legend: this.currencyPipe.transform(c.total, 'BRL')
+      }
     })
-
-    if(this.chart.hasOwnProperty("ctx")){
-
-      // update chart labels and data
-      this.chart.data.labels = labels;
-      this.chart.data.datasets[0].data = chartData;
-      this.chart.data.datasets[0].backgroundColor = colors;
-      this.chart.update();
-    }
-    else{
 
       this.chart = new Chart('chartCategory', {
         type: 'bar',
@@ -124,13 +112,13 @@ export class DetailComponent implements OnInit {
           }
         }
       });
-    }
   }
+
   open(url){
 
     console.log('open',url)
     this.router.navigate([url+'/details'])
-    this.load(url)
+    this.load()
 
   }
 

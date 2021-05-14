@@ -2,11 +2,12 @@
     .app-header{
         .title{
             color:#ffffff;
+            font-size: 3em;
         }
         select{
             margin: 16px auto;
             border: 0;
-            padding: 8px;
+            padding: 25px;
             background: unset;
             color: white;
 
@@ -26,12 +27,12 @@
 
         .chart-container{
             canvas{
-             
+
                 // Large devices (desktops, 992px and up)
-                @media (min-width: 992px){  
+                @media (min-width: 992px){
                     max-width: 50% !important;
                 }
-                
+
                 width: 100%;
                 max-width:80%;
                 margin: 32px auto;
@@ -40,8 +41,8 @@
                 top: -192px;
                 position: relative;
                 margin-bottom: -192px;
-                padding: 20px;      
-                
+                padding: 20px;
+
                 h3{
                     color:#ffffff;
                 }
@@ -49,13 +50,13 @@
         }
     }
     .content{
-        background-color: #f7f7f7;        
-        padding: 8px;
+        background-color: #f7f7f7;
+        padding: 25px;
 
-       
+
     }
 
-    
+
     small{
         font-size: 0.9em !important;
     }

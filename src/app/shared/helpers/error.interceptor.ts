@@ -17,11 +17,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): any {
     return next.handle(request).pipe(catchError(err => {
-      let showError = err.error.message;
-      if(err.error.hasOwnProperty('validation')){
+      let showError = err;
+      if(err.error && err.error.hasOwnProperty('validation')){
         if(err.error.validation.body && err.error.validation.body.message){
           showError = err.error.validation.body.message;
         }
+      }
+      if(err.error && err.error.hasOwnProperty('message')){
+          showError = err.error.message;
       }
 
       this.toast.showDanger(showError);
@@ -33,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
       }
 
-      const error = err.error.message || err.statusText;
+      const error = err.error && err.error.message ? err.error.message : err;
       return throwError(error);
   }));
   }

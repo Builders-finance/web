@@ -43,7 +43,7 @@ export class GroupByPipe implements PipeTransform {
         return { key, values: groupedObj[key], total: countItems.total}
       })
     }
-    return Object.keys(groupedObj).map(key => ({ key, value: groupedObj[key] }));
+    return Object.keys(groupedObj).map(key => ({ key, values: groupedObj[key] }));
   }
 
 }
