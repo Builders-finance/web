@@ -22,8 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if(err.error.validation.body && err.error.validation.body.message){
           showError = err.error.validation.body.message;
         }
-      }
-      if(err.error && err.error.hasOwnProperty('message')){
+      } else if(err.error && err.error.hasOwnProperty('message')){
           showError = err.error.message;
       }
 
