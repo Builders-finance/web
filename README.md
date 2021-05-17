@@ -171,3 +171,13 @@ O mesmo acontece para os componentes do AngularMaterial, que devem ser importado
 |-- app.module.ts
 |-- app.component.ts
 ```
+
+### Autores
+
+<table>
+  <tr>
+    <td align="center"><a href="https://platformbuilders.io"><img style="border-radius: 50%;" src="https://github.com/cokita.png?size=460" width="100px;" alt=""/><br /><sub><b>Ana Flávia Carvalho</b></sub></a><br /><a href="https://platformbuilders.io/" title="Builder">👩‍🚀</a></td>
+    <td align="center"><a href="https://platformbuilders.io"><img style="border-radius: 50%;" src="https://github.com/leonardonatal.png?size=460" width="100px;" alt=""/><br /><sub><b>Leonardo Natal</b></sub></a><br /><a href="https://platformbuilders.io/" title="Builder">👨‍🚀</a></td>
+    <td align="center"><a href="https://platformbuilders.io"><img style="border-radius: 50%;" src="https://github.com/marcosbrunomb.png?size=460" width="100px;" alt=""/><br /><sub><b>Marcos Barroso</b></sub></a><br /><a href="https://platformbuilders.io/" title="Builder">👨‍🚀</a></td>
+  </tr>
+</table>
