@@ -5,6 +5,7 @@ import { ToastComponent } from './components/toast/toast.component';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontawesomeSharedModule } from './fontawesome-shared/fontawesome-shared.module';
+import { CpfCnpjValidator } from './validators/cpf-cnpj-validators';
 
 @NgModule({
  imports: [
@@ -23,6 +24,9 @@ import { FontawesomeSharedModule } from './fontawesome-shared/fontawesome-shared
     FontawesomeSharedModule,
     NgbModule,
     ToastComponent
+  ],
+  providers: [
+    CpfCnpjValidator
   ]
 })
 export class SharedModule { }
