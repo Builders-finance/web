@@ -14,15 +14,23 @@ const routes: Routes = [
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
       },
       {
+        path: 'home',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+      },
+      {
         path: ':category/details',
         loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailModule),
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule),
       }
     ],
     canActivate: [UserGuard],
   },
   {
     path: '**',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    component: LayoutComponent,
   }
 ];
 

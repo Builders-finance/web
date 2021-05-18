@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ModalNewExpenseComponent } from 'src/app/internal/components/new-expense/modal-new-expense/modal-new-expense.component';
@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/external/pages/login/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() toggleSidenav = new EventEmitter();
   user: any;
   constructor(public dialog: MatDialog, private media: MediaMatcher, private loginService: LoginService) { }
 

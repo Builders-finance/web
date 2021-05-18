@@ -6,3 +6,49 @@ $my-app-accent:  mat-palette($mat-deep-purple, 500, 900, A100);
 $my-app-warn:    mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
+
+.mat-sidenav-container {
+  min-height: calc(100vh - 64px);
+  background-color: #523479 !important;
+  @media (max-width: 599px) {
+    min-height: calc(100vh - 56px);
+  }
+}
+
+.mat-sidenav {
+  min-width: 200px;
+  background-color: #000 !important;
+  // border-right-style: solid;
+  // border-right-width: 5px;
+}
+
+.mat-subheader {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
+
+.mat-list-item{
+  // color: #ffc107 !important;
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.mat-list-base{
+  padding-top: 0 !important;
+}
+
+.mat-list-item:hover{
+  background-color: rgb(255, 193, 7) !important;
+  color: #000 !important;
+}
+
+.nav-side-bottom{
+  position: absolute;
+  bottom: 25px;
+  margin-left: 15px;
+}
+
+.list-item-active {
+  background-color: rgb(255, 193, 7) !important;
+  color: #000 !important;
+}

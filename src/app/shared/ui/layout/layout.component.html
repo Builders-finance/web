@@ -1,4 +1,36 @@
-<app-header></app-header>
-<div class="container-fluid p-0">
-  <router-outlet></router-outlet>
+<app-header (toggleSidenav)="navigationSidenav.toggle();"></app-header>
+<mat-sidenav-container autosize>
+
+  <mat-sidenav #navigationSidenav mode="side" role="navigation" [(opened)]="opened">
+    <!-- <mat-toolbar>
+      <mat-toolbar-row>
+        <h2 class="toolbar-title"> Builders Financial</h2>
+      </mat-toolbar-row>
+    </mat-toolbar> -->
+    <mat-nav-list>
+    <ng-container>
+      <!-- <h2 matSubheader> CATEGORIAS </h2> -->
+      <a mat-list-item [routerLink]="['/admin']" [routerLinkActiveOptions]="{exact: true}"
+        routerLinkActive="list-item-active">
+        <mat-icon matListIcon class="nav-list-icon"> home </mat-icon>
+        Home
+      </a>
+      <!-- <mat-divider></mat-divider> -->
+      <a mat-list-item [routerLink]="['/admin', 'categories']" [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="list-item-active">
+      <mat-icon matListIcon class="nav-list-icon"> list_alt </mat-icon>
+      Categorias
+    </a>
+    </ng-container>
+  </mat-nav-list>
+  <div class="nav-side-bottom">
+  <img src="../../../../assets/img/logo-builders-bc.svg" height="35">
 </div>
+  </mat-sidenav>
+  <mat-sidenav-content role="main">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <div class="container-fluid p-0">
+  <router-outlet></router-outlet>
+</div> -->

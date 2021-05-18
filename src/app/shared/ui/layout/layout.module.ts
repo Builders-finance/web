@@ -13,6 +13,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from '../../pipes/pipes.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent],
   imports: [
@@ -28,6 +30,8 @@ import { PipesModule } from '../../pipes/pipes.module';
     MatMenuModule,
     MatDividerModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
     PipesModule
   ],
   exports: [],
