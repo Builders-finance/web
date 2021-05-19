@@ -4,7 +4,7 @@
    <mat-icon (click)="open()">add</mat-icon>
 </div> -->
 <div class="app-header">
-<mat-toolbar color="primary">
+<mat-toolbar [color]="(menuOpened && !isDesktop) ? 'accent': 'primary'">
 
   <mat-toolbar-row class="d-flex justify-content-between">
 
@@ -23,7 +23,7 @@
       </button>
       <mat-menu #auth="matMenu">
         <button mat-menu-item>
-          <span> {{user?.user.name | firstLastName}} </span>
+          <span> {{user?.user.name | firstLastName}} {{menuOpened}} {{ isDesktop}}</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">

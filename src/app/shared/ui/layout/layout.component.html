@@ -1,4 +1,4 @@
-<app-header (toggleSidenav)="navigationSidenav.toggle();"></app-header>
+<app-header (toggleSidenav)="navigationSidenav.toggle(); onOpenedChange()"></app-header>
 <mat-sidenav-container autosize>
 
   <mat-sidenav #navigationSidenav mode="side" role="navigation" [(opened)]="opened">

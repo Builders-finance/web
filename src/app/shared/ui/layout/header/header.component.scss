@@ -2,6 +2,10 @@
   background-color: #000 !important;
 }
 
+::ng-deep .mat-toolbar.mat-accent {
+  background-color: #523479 !important;
+}
+
 .navbar-brand{
   color: #ffffff;
   a {

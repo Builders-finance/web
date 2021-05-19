@@ -20,6 +20,9 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   background-color: #000 !important;
   // border-right-style: solid;
   // border-right-width: 5px;
+  @media (max-width: 599px) {
+    min-width: 100%;
+  }
 }
 
 .mat-subheader {

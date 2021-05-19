@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ModalNewExpenseComponent } from 'src/app/internal/components/new-expense/modal-new-expense/modal-new-expense.component';
 import { LoginService } from 'src/app/external/pages/login/login.service';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,22 @@ import { LoginService } from 'src/app/external/pages/login/login.service';
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter();
   user: any;
-  constructor(public dialog: MatDialog, private media: MediaMatcher, private loginService: LoginService) { }
+  isDesktop: boolean = true;
+  menuOpened: boolean = false;
+  constructor(public dialog: MatDialog, private media: MediaMatcher, private loginService: LoginService,
+    private layoutService: LayoutService) { }
 
   ngOnInit() {
     this.user = this.loginService.getCurrentUser();
-    console.log(this.user);
+    this.layoutService.menuOpenedChange.subscribe(res => {
+      this.menuOpened = res;
+    })
+
+    const mobileQuery = this.media.matchMedia('(min-width: 768px)');
+    this.isDesktop = mobileQuery.matches;
+    mobileQuery.onchange = (res) => {
+      this.isDesktop = res.matches;
+    }
   }
 
   open() {
