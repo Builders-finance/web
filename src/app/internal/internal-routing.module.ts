@@ -22,8 +22,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailModule),
       },
       {
-        path: 'categories',
-        loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule),
+        path: 'rev-exp',
+        loadChildren: () => import('./pages/rev-exp/rev-exp.module').then(m => m.RevExpModule),
       }
     ],
     canActivate: [UserGuard],

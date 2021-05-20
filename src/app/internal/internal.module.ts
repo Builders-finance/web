@@ -6,10 +6,13 @@ import { ComponentsModule } from './components/components.module';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutModule } from '../shared/ui/layout/layout.module';
 import { MaterialSharedModule } from '../shared/material-shared/material-shared.module';
+import { RevExpComponent } from './pages/rev-exp/rev-exp.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RevExpComponent
+  ],
   imports: [
     CommonModule,
     InternalRoutingModule,

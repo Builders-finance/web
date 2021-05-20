@@ -10,8 +10,11 @@
             <a class="list-group-item list-group-item-action"
             *ngFor="let item of transactions" (click)="saveTransactionLocal(item)" routerLink="/admin/{{item?.nome}}/details">
                 <div class="d-flex w-100 justify-content-between align-items-center" >
-                <fa-icon [icon]="['fas', 'heart']"></fa-icon>
-                <h4 class="mb-1 flex-grow-1">{{item?.nome}}</h4>
+                <!-- <fa-icon [icon]="['fas', 'heart']"></fa-icon> -->
+                <div class="icon-container-avatar">
+                  <mat-icon [ngClass]="{'icon-avatar-rev--square': item.rec_des === 1, 'icon-avatar-exp--square' : item.rec_des === 2 }">{{!item.icon ? 'favorite' : item.icon}}</mat-icon>
+                </div>
+                <h4 class="mb-1 flex-grow-1 ml-2">{{item?.nome}}</h4>
                 <small>{{item?.valor | currency: 'BRL'}} </small>
                 <fa-icon [icon]="['fas', 'angle-right']"></fa-icon>
                 </div>

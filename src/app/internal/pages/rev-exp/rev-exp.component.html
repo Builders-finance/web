@@ -1,0 +1,28 @@
+<div class="fab_top">
+<button mat-mini-fab color="primary" (click)="addRevExp()">
+  <mat-icon>post_add</mat-icon>
+</button>
+</div>
+<div class="p-5">
+<div class="text-center">
+<h1>Receitas e Despesas</h1>
+</div>
+<div class="row" *ngIf="revExp">
+  <div class="col-md-3" *ngFor="let re of revExp.data; ">
+    <mat-card class="mt-2">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-container-avatar">
+          <mat-icon [ngClass]="{'icon-avatar-rev': re.rec_des === 1, 'icon-avatar-exp' : re.rec_des === 2 }">{{!re.icon ? 'favorite' : re.icon}} </mat-icon>
+        </div>
+        <mat-card-title>{{re.name}}</mat-card-title>
+        <mat-card-subtitle>{{re.rec_des == 2 ? 'Despesa' : 'Receita'}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions class="text-right">
+        <button mat-button>Remover</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
+</div>
+

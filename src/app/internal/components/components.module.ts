@@ -10,10 +10,11 @@ import { UiModule } from '../../shared/ui/ui.module';
 import { FontawesomeSharedModule } from 'src/app/shared/fontawesome-shared/fontawesome-shared.module';
 import { ModalNewExpenseComponent } from './new-expense/modal-new-expense/modal-new-expense.component';
 import { MaterialSharedModule } from 'src/app/shared/material-shared/material-shared.module';
+import { NewRevexpComponent } from './new-revexp/new-revexp.component';
 
 
 @NgModule({
-  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent],
+  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent, NewRevexpComponent],
   imports: [
     CommonModule,
     FormsModule,

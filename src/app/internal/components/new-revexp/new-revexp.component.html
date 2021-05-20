@@ -1,0 +1,44 @@
+<form [formGroup]="formRevExp" (ngSubmit)="save()">
+<h1 mat-dialog-title>Adicionar Receitas ou Despesas</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-md-10">
+      <mat-label>Tipo:</mat-label>
+      <mat-select formControlName="rec_des" required>
+        <mat-option value="1">Receita</mat-option>
+        <mat-option value="2">Despesa</mat-option>
+      </mat-select>
+      <mat-error *ngIf="f.rec_des.errors?.required">
+        O tipo é <strong>obrigatório</strong>
+    </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-md-10">
+      <mat-label>Nome:</mat-label>
+      <input matInput placeholder="Nome para receita ou despesa" formControlName="name" required>
+      <mat-error *ngIf="f.name.errors?.required">
+        O nome é <strong>obrigatório</strong>
+    </mat-error>
+    </mat-form-field>
+  </div>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="fill" class="col-md-10">
+      <mat-label>Ícone:</mat-label>
+      <input matInput aria-label="Categoria" placeholder="Escolha um ícone" [matAutocomplete]="autoCategory"
+        formControlName="icon" id="icon">
+      <mat-autocomplete #autoCategory="matAutocomplete" [displayWith]="autoCompleteService.displayFn" (optionSelected)="iconSelected($event)">
+        <mat-option *ngFor="let model of filteredIcons | async" [value]="model">
+          <mat-icon>{{model}}</mat-icon>
+          <span class="ml-3">{{model}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-icon matSuffix>{{f.icon.value}}</mat-icon>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+    <button mat-button mat-dialog-close type="button">Fechar</button>
+  </div>
+</form>

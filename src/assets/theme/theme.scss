@@ -55,3 +55,41 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   background-color: rgb(255, 193, 7) !important;
   color: #000 !important;
 }
+
+.icon-container-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.icon-avatar-exp {
+  background: #f74386;
+    font-size: 2em;
+    padding: 6px;
+    color: #ffffff;
+    border-radius: 50%;
+    height: inherit !important;
+    width: inherit !important;
+}
+
+.icon-avatar-rev {
+  background: #0096C7;
+    font-size: 2em;
+    padding: 6px;
+    color: #ffffff;
+    border-radius: 50%;
+    height: inherit !important;
+    width: inherit !important;
+}
+
+.icon-avatar-exp--square {
+  @extend .icon-avatar-exp;
+  border-radius: 5px;
+}
+
+.icon-avatar-rev--square {
+  @extend .icon-avatar-rev;
+  border-radius: 5px;
+}
