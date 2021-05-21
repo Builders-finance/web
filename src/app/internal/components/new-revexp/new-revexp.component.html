@@ -2,7 +2,7 @@
 <h1 mat-dialog-title>Adicionar Receitas ou Despesas</h1>
 <div mat-dialog-content>
   <div class="row">
-    <mat-form-field appearance="fill" class="col-md-10">
+    <mat-form-field appearance="fill" class="col-md-12">
       <mat-label>Tipo:</mat-label>
       <mat-select formControlName="rec_des" required>
         <mat-option value="1">Receita</mat-option>
@@ -14,7 +14,7 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <mat-form-field appearance="fill" class="col-md-10">
+    <mat-form-field appearance="fill" class="col-md-12">
       <mat-label>Nome:</mat-label>
       <input matInput placeholder="Nome para receita ou despesa" formControlName="name" required>
       <mat-error *ngIf="f.name.errors?.required">
@@ -24,7 +24,7 @@
   </div>
   </div>
   <div class="row">
-    <mat-form-field appearance="fill" class="col-md-10">
+    <mat-form-field appearance="fill" class="col-md-12">
       <mat-label>Ícone:</mat-label>
       <input matInput aria-label="Categoria" placeholder="Escolha um ícone" [matAutocomplete]="autoCategory"
         formControlName="icon" id="icon">
