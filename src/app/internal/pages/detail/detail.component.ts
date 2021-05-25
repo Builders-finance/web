@@ -40,7 +40,7 @@ export class DetailComponent implements OnInit {
 
   async load(){
     this.categoryId = JSON.parse(localStorage.getItem('transactionDetail'));
-    this.dataService.getTransactionsById(this.categoryId.id).subscribe(async (res: Transaction[]) => {
+    this.dataService.getTransactionsByRevExpId(this.categoryId.id).subscribe(async (res: Transaction[]) => {
       this.items = await this.groupByPipe.transform(res, 'data', 'valor');
       this.loadChart();
       this.total = res.length > 0 ? res.map(i => i.valor).reduce((a,b) => a + b) : 0;

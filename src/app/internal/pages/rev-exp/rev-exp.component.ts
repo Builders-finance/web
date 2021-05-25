@@ -35,7 +35,6 @@ export class RevExpComponent implements OnInit {
   addRevExp() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.hasBackdrop = true;
-    dialogConfig.panelClass = 'mat-dialog-override';
     dialogConfig.data = {};
     const modalRef = this.dialog.open(NewRevexpComponent, dialogConfig);
 

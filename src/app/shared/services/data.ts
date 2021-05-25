@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Transaction } from '../models/transaction.model';
 import { Pagination } from '../models/pagination.model';
 import { tap } from 'rxjs/operators';
+import { HttpService } from './http.service';
 
 
 @Injectable({
@@ -25,17 +26,17 @@ export class DataService {
     utilities: {icon:"money", name: "Utilities Payments", link:"utilities-payments"}
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
     this.loadTransactions();
   }
 
   public getCategories(): Observable<any> {
-    const revexp = this.http.get(`${environment.urlBase}/revexp`);
+    const revexp = this.http.get(`revexp`);
     return revexp;
   }
 
   public addTransaction(transaction: Transaction) {
-    const trans = this.http.post(`${environment.urlBase}/transactions`, transaction)
+    const trans = this.http.post(`transactions`, transaction)
       .pipe(
         tap(() => {
           this.transactionsSubject.next();
@@ -45,12 +46,12 @@ export class DataService {
   }
 
   public loadTransactions() {
-    const transactions = this.http.get(`${environment.urlBase}/transactions`);
+    const transactions = this.http.get(`transactions`);
     return transactions
   }
 
-  public getTransactionsById(id: string) {
-    const transactions = this.http.get(`${environment.urlBase}/transactions/${id}`);
+  public getTransactionsByRevExpId(id: string) {
+    const transactions = this.http.get(`transactions/get-by-revexp/${id}`);
     return transactions;
   }
 
