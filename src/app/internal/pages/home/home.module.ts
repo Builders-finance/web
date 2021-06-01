@@ -4,6 +4,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ComponentsModule } from '../../components/components.module';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -13,7 +14,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     CommonModule,
     HomeRoutingModule,
     ComponentsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatMenuModule
   ],
 })
 export class HomeModule { }

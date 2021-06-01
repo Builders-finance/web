@@ -8,35 +8,23 @@ import { DataService } from 'src/app/shared/services/data';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CategoriesComponent implements OnInit, AfterViewInit, OnDestroy {
   _transactionsReceived: Pagination<TransactionDTO>
-  @Input() set transactionsReceived(value: Pagination<TransactionDTO>){
-    this._transactionsReceived = value;
-    this.filterTransactions(null);
-  }
-  private _recDes: number | null = null;
-  @Input() set recDes (value: number) {
-    this._recDes = value ?? null;
-    this.filterTransactions(this._recDes);
+  @Input() set items(value: TransactionDTO[]){
+    this._items = [...value];
   }
   expensesSubscriber =  this.dataService.expenses;
-  items: TransactionDTO[];
+  _items: TransactionDTO[];
   public snapshot = {categories:[], expenses:[], total:0}
 
   constructor(@Inject(DataService) private dataService: DataService) {}
 
-  ngOnInit() {  }
+  ngOnInit() { }
 
   ngAfterViewInit() {
 
   }
 
-  filterTransactions(recDes: number|null){
-    this.items = {...this._transactionsReceived}.items;
-    if(this._transactionsReceived && this._transactionsReceived.total > 0 && recDes !== null){
-      this.items = this.items.filter(item => item.rec_des == recDes)
-    }
-  }
 
   saveTransactionLocal(transaction: TransactionDTO) {
     localStorage.setItem('transactionDetail', JSON.stringify(transaction))
@@ -45,8 +33,7 @@ export class CategoriesComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnDestroy(){
-    if(this.expensesSubscriber){
-    }
+    if(this.expensesSubscriber){}
   }
 
 }

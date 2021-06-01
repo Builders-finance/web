@@ -20,7 +20,6 @@ export function currencyAsFunction(money){
 export class ChartsComponent implements OnInit, OnDestroy {
   totalLegend: number = 0;
   allData: TransactionDTO[];
-  // @Input() data: Array<any>;
   @Input() set data(data: TransactionDTO[]) {
     this.totalLegend = 0;
     this.allData = data;
@@ -64,27 +63,26 @@ export class ChartsComponent implements OnInit, OnDestroy {
   setDataChart() {
     this.pieChartData = [];
     this.pieChartLabels = [];
+    this.pieChartColors = [{backgroundColor: []}]
     this.pieChartOptions.tooltips = {
         callbacks: {
           label: function(tooltipItem, data) {
-            // if(this.fieldData == 'total'){
-            //   return String(data.datasets[0].data[tooltipItem.index])
-            // }
             return currencyAsFunction(data.datasets[0].data[tooltipItem.index])
           },
         }
       }
     this.pieChartOptions.elements = {arc: {borderWidth: 0}};
-    let backgrounds = [];
     this.allData.forEach(item => {
       this.pieChartLabels.push(item.nome);
       this.totalLegend += item.valor;
       this.pieChartData.push(item.valor);
-      // backgrounds.push(this.constUfs.UFColors[item.uf.toUpperCase()])
+      this.pieChartColors[0].backgroundColor.push(this.getRandomColor());
     });
-    // this.pieChartColors.push({
-    //   backgroundColor: backgrounds,
-    // })
+  }
+
+  getRandomColor() {
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
   }
 
   ngOnDestroy() {

@@ -3,6 +3,7 @@ import { DataService } from 'src/app/shared/services/data';
 import { TransactionDTO } from 'src/app/shared/models/transaction-dto.model';
 import { Pagination } from 'src/app/shared/models/pagination.model';
 import * as moment from 'moment';
+import { Months } from 'src/app/shared/constants/months';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +12,28 @@ import * as moment from 'moment';
 })
 export class HomeComponent implements OnInit {
   recDesSelected: number = null;
-  dateSelected: string = 'month';
+  days: number[] = Array(31).fill(1).map((x,i)=> (i+1));
+  daySelected: string = '';
+  monthSelected: number = parseInt(moment().format('M'));
+  yearSelected: string = moment().format('YYYY');
   transactions: Pagination<TransactionDTO>;
   recItems: any;
   desItems: any;
   public snapshot = {categories:[], expenses:[], total:0}
 
-  constructor(@Inject(DataService) private dataService: DataService, private cd: ChangeDetectorRef) {}
+  constructor(@Inject(DataService) private dataService: DataService, public months: Months) {}
 
   ngOnInit(): void {
 
-    this.totalValue({month: moment().format('MM')});
+    this.totalValue();
     this.dataService.refreshTransaction
       .subscribe(() => {
-        this.totalValue({month: moment().format('MM')});
+        this.totalValue();
       })
   }
 
-  public totalValue(filter?) {
+  public totalValue() {
+    let filter = {day: this.daySelected, month: this.monthSelected, year: this.yearSelected};
     this.dataService.loadTransactions(filter).subscribe((response: any) => {
       this.transactions = response.data as Pagination<TransactionDTO>;
       this.recItems = this.transactions.items.filter(item => item.rec_des == 1)
@@ -43,21 +48,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  selectDate(type) {
-    this.dateSelected = type;
-    let filter = {};
+  selectDate(type, numberDate?) {
     switch(type) {
       case 'day':
-        filter = Object.assign(filter, {day: moment().format('DD')})
+        this.daySelected = numberDate ?? moment().format('DD');
         break;
       case 'month':
-        filter = Object.assign(filter, {month: moment().format('MM')})
+        this.monthSelected = numberDate ?? moment().format('MM');
       break;
       case 'year':
-        filter = Object.assign(filter, {year: moment().format('YYYY')})
+        this.yearSelected = numberDate ?? moment().format('YYYY');
       break;
     }
-    this.totalValue(filter);
+    this.totalValue();
   }
 
 }

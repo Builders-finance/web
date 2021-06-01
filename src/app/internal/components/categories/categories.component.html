@@ -1,6 +1,6 @@
-<div class="row m-0 financial-lists" *ngIf="items">
+<div class="row m-0 financial-lists" *ngIf="_items">
     <div class="col p-0">
-        <a href="#" class="list-group-item list-group-item-action" *ngIf="items.length < 1">
+        <a href="#" class="list-group-item list-group-item-action" *ngIf="_items.length < 1">
             <div class="d-flex flex-column justify-content-between lign-items-center text-center">
             <h5 class="mb-1">Oh no :(</h5>
             <p>You didnt registered any expenses</p>
@@ -8,7 +8,7 @@
         </a>
         <div class="list-group" >
             <a class="list-group-item list-group-item-action"
-            *ngFor="let item of items" (click)="saveTransactionLocal(item)" routerLink="/admin/{{item?.nome}}/details">
+            *ngFor="let item of _items" (click)="saveTransactionLocal(item)" routerLink="/admin/{{item?.nome}}/details">
                 <div class="d-flex w-100 justify-content-between align-items-center" >
                 <div class="icon-container-avatar">
                   <mat-icon [ngClass]="{'icon-avatar-rev--square': item.rec_des === 1, 'icon-avatar-exp--square' : item.rec_des === 2 }">{{!item.icon ? 'favorite' : item.icon}}</mat-icon>

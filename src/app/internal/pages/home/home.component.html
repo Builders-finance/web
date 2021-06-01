@@ -2,13 +2,26 @@
   <div class="container">
       <ul class="nav nav-pills justify-content-center">
           <li class="nav-item">
-              <a class="nav-link cursor" [ngClass]="{'active': dateSelected == 'day'}" (click)="selectDate('day')">Dia</a>
+              <a class="nav-link cursor" [matMenuTriggerFor]="menuDay">{{daySelected || 'dia'}}</a>
+              <mat-menu #menuDay="matMenu">
+                <button mat-menu-item (click)="selectDate('day', '')" >
+                  <span> Todos </span>
+                </button>
+                <button mat-menu-item *ngFor="let day of days" (click)="selectDate('day', day)" >
+                  <span>{{ day }}</span>
+                </button>
+              </mat-menu>
           </li>
           <li class="nav-item">
-              <a class="nav-link cursor" [ngClass]="{'active': dateSelected == 'month'}" (click)="selectDate('month')">Mês</a>
+              <a class="nav-link cursor active" [matMenuTriggerFor]="menuMonth">{{months.MONTHS_NAMES[monthSelected-1]}}</a>
+              <mat-menu #menuMonth="matMenu">
+                <button mat-menu-item *ngFor="let mes of months.MONTHS" (click)="selectDate('month', mes.value)" >
+                  <span>{{ mes.shortName }}</span>
+                </button>
+              </mat-menu>
           </li>
           <li class="nav-item">
-              <a class="nav-link cursor" [ngClass]="{'active': dateSelected == 'year'}" (click)="selectDate('year')">Ano</a>
+              <a class="nav-link cursor active" (click)="selectDate('year')">{{yearSelected}}</a>
           </li>
           </ul>
 
@@ -28,13 +41,13 @@
 </div>
 <mat-tab-group mat-align-tabs="center" *ngIf="transactions" (selectedTabChange)="changeTab($event);">
 <mat-tab label="Todos">
-  <app-categories  [transactionsReceived]='transactions' [recDes]="null"></app-categories>
+  <app-categories  [items]='transactions.items'></app-categories>
 </mat-tab>
 <mat-tab label="Receitas">
-  <app-categories [transactionsReceived]='transactions' [recDes]="1" ></app-categories>
+  <app-categories [items]='recItems'></app-categories>
 </mat-tab>
 <mat-tab label="Despesas">
-  <app-categories [transactionsReceived]='transactions' [recDes]="2"></app-categories>
+  <app-categories [items]='desItems'></app-categories>
 </mat-tab>
 
 </mat-tab-group>
