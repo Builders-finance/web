@@ -11,10 +11,12 @@ import { FontawesomeSharedModule } from 'src/app/shared/fontawesome-shared/fonta
 import { ModalNewExpenseComponent } from './new-expense/modal-new-expense/modal-new-expense.component';
 import { MaterialSharedModule } from 'src/app/shared/material-shared/material-shared.module';
 import { NewRevexpComponent } from './new-revexp/new-revexp.component';
+import { ChartsComponent } from './charts/charts.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
-  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent, NewRevexpComponent],
+  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent, NewRevexpComponent, ChartsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,11 +25,13 @@ import { NewRevexpComponent } from './new-revexp/new-revexp.component';
     FontawesomeSharedModule,
     MaterialSharedModule,
     NgxMaskModule,
-    UiModule
+    UiModule,
+    ChartsModule
   ],
   exports:[
     CategoriesComponent,
     ActivitiesComponent,
+    ChartsComponent,
     ModalNewExpenseComponent,
     RouterModule
   ]

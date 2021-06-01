@@ -6,6 +6,7 @@ import { DatePipe,CurrencyPipe } from '@angular/common';
 // import { debug } from 'util';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { GroupByPipe } from 'src/app/shared/pipes/group-by.pipe';
+import { ResponseModel } from 'src/app/shared/models/response.model';
 
 @Component({
   selector: 'app-detail',
@@ -40,10 +41,10 @@ export class DetailComponent implements OnInit {
 
   async load(){
     this.categoryId = JSON.parse(localStorage.getItem('transactionDetail'));
-    this.dataService.getTransactionsByRevExpId(this.categoryId.id).subscribe(async (res: Transaction[]) => {
-      this.items = await this.groupByPipe.transform(res, 'data', 'valor');
+    this.dataService.getTransactionsByRevExpId(this.categoryId.id).subscribe(async (res: ResponseModel<Transaction[]>) => {
+      this.items = await this.groupByPipe.transform(res.data, 'data', 'valor');
       this.loadChart();
-      this.total = res.length > 0 ? res.map(i => i.valor).reduce((a,b) => a + b) : 0;
+      this.total = res.data.length > 0 ? res.data.map(i => i.valor).reduce((a,b) => a + b) : 0;
       console.log(this.items);
     });
   }
@@ -85,8 +86,8 @@ export class DetailComponent implements OnInit {
             backgroundColor: 'rgb(232, 93, 87,0.8)',
             callbacks: {
               label: function(tooltipItem, chart) {
-                const legend = chart.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].legend
-                return legend
+                // const legend = chart.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].legend
+                return ''
               }
           }
           },

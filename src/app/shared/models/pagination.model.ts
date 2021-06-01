@@ -7,5 +7,5 @@ export interface Pagination <T>{
   current_page: number,
   prev_page: number,
   next_page: number,
-  data: T[]
+  items: T[]
 }

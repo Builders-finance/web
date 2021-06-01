@@ -45,8 +45,8 @@ export class DataService {
     return trans;
   }
 
-  public loadTransactions() {
-    const transactions = this.http.get(`transactions`);
+  public loadTransactions(filter?) {
+    const transactions = this.http.get(`transactions`, filter);
     return transactions
   }
 

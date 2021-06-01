@@ -1,8 +1,16 @@
 
+::ng-deep .mat-tab-label-content {
+  color: #fff !important;
+}
+
+h3 {
+  color: #fff;
+}
+
 .financial{
     &-header{
-        background-color:#523479;   
-        border-radius: 0px;     
+        background-color:#523479;
+        border-radius: 0px;
 
         .container{
             .nav-pills{
@@ -20,26 +28,10 @@
                             border-color: #ffffff;
                             font-weight: 600;
                         }
-                    }                
-                }
-            }
-
-            .chart-container{
-                canvas{
-                    max-width: 320px !important;
-                    margin: 32px auto;
-                }
-                .chart-inner{
-                    top: -192px;
-                    position: relative;
-                    margin-bottom: -192px;
-                    padding: 20px;      
-                    
-                    h3{
-                        color:#ffffff;
                     }
                 }
             }
+
             .nav-tabs{
                 border-bottom: 0px;
                 .nav-item{
@@ -70,5 +62,5 @@
         }
     }
 
-  
+
 }

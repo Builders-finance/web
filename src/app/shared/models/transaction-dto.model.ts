@@ -1,5 +1,7 @@
 export interface TransactionDTO {
     nome: string,
     valor: number,
-    id: string
+    id: string,
+    icon: string,
+    rec_des: number
 }
