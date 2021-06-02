@@ -1,0 +1,14 @@
+<div class="chart chart-container">
+  <canvas baseChart
+    [data]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [colors]="pieChartColors"
+    [legend]="pieChartLegend">
+  </canvas>
+  <div *ngIf="totalLegend" class="text-center">
+    <h3>Total: {{totalLegend | currency:'R$ '}}</h3>
+  </div>
+</div>

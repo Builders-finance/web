@@ -13,8 +13,8 @@ import { RevExpService } from './rev-exp.service';
 })
 export class RevExpComponent implements OnInit {
   revExp: Pagination<RevExp>;
-  pageSize: number = 5;
-  pageNo: number = 0;
+  pageSize: number = 15;
+  pageNo: number = 1;
   constructor(private revExpService: RevExpService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -25,10 +25,10 @@ export class RevExpComponent implements OnInit {
   search(pageNo?, pageSize?) {
     pageSize = pageSize ?? this.pageSize;
     pageNo = pageNo ?? this.pageNo;
-    let params = Object.assign({}, {take: this.pageSize, skip: pageNo})
-    this.revExpService.list(params).subscribe(res => {
+    let params = Object.assign({}, {limit: this.pageSize, page: pageNo})
+    this.revExpService.list(params).subscribe((res: any) => {
       // res.data.map(item => item.icon = 'home')
-      this.revExp = res;
+      this.revExp = res.data;
     })
   }
 

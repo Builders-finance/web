@@ -25,6 +25,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatBadgeModule} from "@angular/material/badge";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
 imports: [
@@ -52,7 +53,8 @@ imports: [
     MatChipsModule,
     MatProgressBarModule,
     MatStepperModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTabsModule,
 ],
 exports: [
     MatAutocompleteModule,
@@ -79,7 +81,8 @@ exports: [
     MatChipsModule,
     MatProgressBarModule,
     MatStepperModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTabsModule
 ],
 providers: [
   { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() }

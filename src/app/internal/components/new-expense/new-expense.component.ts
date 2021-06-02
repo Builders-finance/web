@@ -9,6 +9,7 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import * as moment from 'moment';
 import { AutoCompleteService } from 'src/app/shared/services/auto-complete.service';
 import { map, startWith } from 'rxjs/operators';
+import { ResponsePagination } from 'src/app/shared/models/response.model';
 
 export const MY_FORMATS = {
   parse: {
@@ -79,8 +80,8 @@ export class NewExpenseComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getCategories().subscribe((response: Pagination<RevExp>) => {
-      this.categories = response.data
+    this.dataService.getCategories().subscribe((response: ResponsePagination<RevExp>) => {
+      this.categories = response.data.items;
       this.filteredCategories = this.formGroupExpense.controls.category.valueChanges
           .pipe(
             startWith(''),
