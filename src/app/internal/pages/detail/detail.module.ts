@@ -6,6 +6,7 @@ import { ComponentsModule } from 'src/app/internal/components/components.module'
 import { FormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -17,7 +18,8 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
     DetailRoutingModule,
     ComponentsModule,
     MatExpansionModule,
-    PipesModule
+    PipesModule,
+    MatIconModule
   ],
   providers: [CurrencyPipe]
 })

@@ -31,6 +31,7 @@
                       <div class="d-flex justify-content-between lign-items-center p-sm-2 p-md-0">
                           <h5 class="mb-1">{{categoryId.nome}}</h5>
                           <small>{{ i.valor | currency: 'BRL'}}</small>
+                          <mat-icon class="cursor" (click)="viewTransaction(i)">zoom_in</mat-icon>
                       </div>
                   </a>
                   </mat-expansion-panel>
