@@ -13,10 +13,11 @@ import { MaterialSharedModule } from 'src/app/shared/material-shared/material-sh
 import { NewRevexpComponent } from './new-revexp/new-revexp.component';
 import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
+import { ViewTransactionComponent } from './view-transaction/view-transaction.component';
 
 
 @NgModule({
-  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent, NewRevexpComponent, ChartsComponent],
+  declarations: [CategoriesComponent, ActivitiesComponent, NewExpenseComponent, ModalNewExpenseComponent, NewRevexpComponent, ChartsComponent, ViewTransactionComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Visualizar Transação</h1>
+<mat-dialog-content class="mat-typography" *ngIf="transaction">
+  <div class="row">
+    <div class="col-md-1">
+      <div mat-card-avatar class="icon-container-avatar">
+        <mat-icon [ngClass]="{'icon-avatar-rev': transaction.revExp.rec_des === 1, 'icon-avatar-exp' : transaction.revExp.rec_des === 2 }">
+          {{!transaction.revExp.icon ? 'favorite' : transaction.revExp.icon}} </mat-icon>
+
+      </div>
+    </div>
+    <div class="col-md-2 mt-2">
+      <span>{{transaction.revExp.name}}</span>
+    </div>
+    <div class="col-md-9 mt-2">
+      <div>Valor: {{transaction.valor | currency: 'BRL'}}</div>
+      <div>Data: {{transaction.data | date: 'dd/MM/YYYY'}}</div>
+      <div>Status: {{transaction.status_pagamento == 'paid' ? 'Pago' : 'Não Pago'}}</div>
+      <div>Forma de pagamento: {{paymentType.PAYMENT_TYPE[transaction.forma_pagamento]}}</div>
+      <div *ngIf="transaction.description">Descrição: {{transaction.description}}</div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -7,6 +7,9 @@ import { DatePipe,CurrencyPipe } from '@angular/common';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { GroupByPipe } from 'src/app/shared/pipes/group-by.pipe';
 import { ResponseModel } from 'src/app/shared/models/response.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ViewTransactionComponent } from '../../components/view-transaction/view-transaction.component';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-detail',
@@ -31,7 +34,8 @@ export class DetailComponent implements OnInit {
   constructor(@Inject(DataService) private dataService: DataService,
   private router: Router,
   private datePipe: DatePipe,
-  private currencyPipe: CurrencyPipe, private groupByPipe: GroupByPipe ) {
+  private currencyPipe: CurrencyPipe, private groupByPipe: GroupByPipe,
+  public dialog: MatDialog , private media: MediaMatcher) {
   }
 
    ngOnInit() {
@@ -121,6 +125,24 @@ export class DetailComponent implements OnInit {
     this.router.navigate([url+'/details'])
     this.load()
 
+  }
+
+  viewTransaction(trans) {
+    let width = '80vh';
+    const mobileQuery = this.media.matchMedia('(min-width: 768px)');
+    mobileQuery.onchange = (res) => {
+      if(res.matches) {
+        width = '50vh';
+      }
+    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.position = { top: '10' };
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.width = width;
+    dialogConfig.data = trans;
+    const modalRef = this.dialog.open(ViewTransactionComponent, dialogConfig);
+
+    modalRef.afterClosed().subscribe(result => {});
   }
 
 }
